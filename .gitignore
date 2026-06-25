@@ -1,0 +1,46 @@
+```
+# Dependencies
+node_modules/
+
+# Editors
+.vscode/
+
+# Environment
+.env
+.env.local
+*.env.*
+
+# Logs and temp files
+*.log
+*.tmp
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Build directories
+dist/
+build/
+target/
+
+# Virtual environments
+venv/
+.venv/
+.env/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Coverage reports
+coverage/
+htmlcov/
+.coverage
+
+# Cache directories
+.mypy_cache/
+.pytest_cache/
+.gradle/
+```

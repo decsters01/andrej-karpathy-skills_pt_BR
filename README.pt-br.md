@@ -6,7 +6,7 @@
 
 Um único arquivo `CLAUDE.md` para melhorar o comportamento do Claude Code, derivado das [observações de Andrej Karpathy](https://x.com/karpathy/status/2015883857489522876) sobre armadilhas de codificação de LLMs.
 
-[Português Brasileiro](./README.pt-br.md) | [English](./README.en.md) | [简体中文](./README.zh.md)
+[Diretrizes em Português](./README.md) | [English](./README.en.md) | [简体中文](./README.zh.md)
 
 ## Os Problemas
 
