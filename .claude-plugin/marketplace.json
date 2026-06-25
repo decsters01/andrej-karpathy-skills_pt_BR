@@ -5,22 +5,22 @@
     "name": "forrestchang"
   },
   "metadata": {
-    "description": "Behavioral guidelines to reduce common LLM coding mistakes, derived from Andrej Karpathy's observations",
+    "description": "Diretrizes comportamentais para reduzir erros comuns de codificação de LLMs, derivadas das observações de Andrej Karpathy",
     "version": "1.0.0"
   },
   "plugins": [
     {
       "name": "andrej-karpathy-skills",
       "source": "./",
-      "description": "Behavioral guidelines to reduce common LLM coding mistakes: Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution",
+      "description": "Diretrizes comportamentais para reduzir erros comuns de codificação: Pense Antes de Codificar, Simplicidade Primeiro, Mudanças Cirúrgicas, Execução Orientada a Objetivos",
       "version": "1.0.0",
       "author": {
         "name": "forrestchang"
       },
       "keywords": [
-        "guidelines",
-        "best-practices",
-        "coding",
+        "diretrizes",
+        "melhores-praticas",
+        "codificacao",
         "karpathy"
       ],
       "category": "workflow"

@@ -1,28 +1,28 @@
-# Using this repo with Cursor
+# Usando este repositório com Cursor
 
-This project includes a **Cursor project rule** so the Karpathy-inspired behavioral guidelines apply automatically when you work here.
+Este projeto inclui uma **regra de projeto do Cursor** para que as diretrizes comportamentais inspiradas por Karpathy se apliquem automaticamente quando você trabalhar aqui.
 
-## In this repository
+## Neste repositório
 
-1. Open the folder in Cursor.
-2. The rule [`.cursor/rules/karpathy-guidelines.mdc`](.cursor/rules/karpathy-guidelines.mdc) is committed with `alwaysApply: true`, so you do not need extra installation steps.
-3. In Cursor, you can confirm it under **Settings → Rules** (or the project rules UI), where `karpathy-guidelines` should appear.
+1. Abra a pasta no Cursor.
+2. A regra [`.cursor/rules/karpathy-guidelines.mdc`](.cursor/rules/karpathy-guidelines.mdc) está comprometida com `alwaysApply: true`, então você não precisa de etapas extras de instalação.
+3. No Cursor, você pode confirmar em **Settings → Rules** (ou na interface de regras do projeto), onde `karpathy-guidelines` deve aparecer.
 
-## Use the same guidelines in another project
+## Use as mesmas diretrizes em outro projeto
 
-**Cursor (recommended):** Copy `.cursor/rules/karpathy-guidelines.mdc` into that project’s `.cursor/rules/` directory (create the folders if needed). Adjust or merge with existing rules as you like.
+**Cursor (recomendado):** Copie `.cursor/rules/karpathy-guidelines.mdc` para o diretório `.cursor/rules/` daquele projeto (crie as pastas se necessário). Ajuste ou mescle com regras existentes conforme desejar.
 
-**Other tools:** If a stack only supports a root instruction file, copy [`CLAUDE.md`](CLAUDE.md) into that project instead (or merge its contents into your existing instructions).
+**Outras ferramentas:** Se uma pilha suportar apenas um arquivo de instrução raiz, copie [`CLAUDE.md`](CLAUDE.md) para aquele projeto (ou mescle seu conteúdo com suas instruções existentes).
 
-## Optional: personal Agent Skills
+## Opcional: Habilidades Pessoais do Agente
 
-If you want the same content as a reusable skill under `~/.cursor/skills`, use [`skills/karpathy-guidelines/SKILL.md`](skills/karpathy-guidelines/SKILL.md). You can copy or symlink it into your personal skills directory; use whatever layout you use for other skills.
+Se você quiser o mesmo conteúdo como uma habilidade reutilizável em `~/.cursor/skills`, use [`skills/karpathy-guidelines/SKILL.md`](skills/karpathy-guidelines/SKILL.md). Você pode copiar ou criar um link simbólico para ele em seu diretório pessoal de habilidades; use qualquer layout que você use para outras habilidades.
 
 ## Claude Code vs Cursor
 
-- **Claude Code:** Install via the plugin marketplace and [`README.md`](README.md) instructions; the plugin exposes the skill from this repo. Per-project use can also rely on `CLAUDE.md`.
-- **Cursor:** Use the committed `.cursor/rules/` file as described above. Cursor does not read `.claude-plugin/` or `CLAUDE.md` by default.
+- **Claude Code:** Instale via marketplace de plugins e instruções do [`README.md`](README.md); o plugin expõe a habilidade deste repositório. O uso por projeto também pode depender do `CLAUDE.md`.
+- **Cursor:** Use o arquivo `.cursor/rules/` comprometido conforme descrito acima. O Cursor não lê `.claude-plugin/` ou `CLAUDE.md` por padrão.
 
-## For contributors
+## Para contribuidores
 
-When you change the four principles, keep **[`CLAUDE.md`](CLAUDE.md)** and **[`.cursor/rules/karpathy-guidelines.mdc`](.cursor/rules/karpathy-guidelines.mdc)** in sync. If the published skill/plugin text should match, update **[`skills/karpathy-guidelines/SKILL.md`](skills/karpathy-guidelines/SKILL.md)** as well.
+Quando você alterar os quatro princípios, mantenha **[`CLAUDE.md`](CLAUDE.md)** e **[`.cursor/rules/karpathy-guidelines.mdc`](.cursor/rules/karpathy-guidelines.mdc)** sincronizados. Se o texto da habilidade/plugin publicado dever corresponder, atualize também **[`skills/karpathy-guidelines/SKILL.md`](skills/karpathy-guidelines/SKILL.md)** assim como.
