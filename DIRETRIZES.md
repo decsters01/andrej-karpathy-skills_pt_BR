@@ -1,12 +1,6 @@
----
-name: karpathy-guidelines
-description: Diretrizes comportamentais para reduzir erros comuns de codificação de LLMs. Use ao escrever, revisar ou refatorar código para evitar complicação excessiva, fazer mudanças cirúrgicas, expor suposições e definir critérios de sucesso verificáveis.
-license: MIT
----
+# DIRETRIZES.md
 
-# Diretrizes Karpathy
-
-Diretrizes comportamentais para reduzir erros comuns de codificação de LLMs, derivadas das [observações de Andrej Karpathy](https://x.com/karpathy/status/2015883857489522876) sobre armadilhas de codificação de LLMs.
+Diretrizes comportamentais para reduzir erros comuns de codificação de LLMs. Mescle com instruções específicas do projeto conforme necessário.
 
 **Compensação:** Estas diretrizes tendem para cautela em vez de velocidade. Para tarefas triviais, use julgamento.
 
@@ -65,3 +59,7 @@ Para tarefas de múltiplos passos, declare um plano breve:
 ```
 
 Critérios de sucesso fortes permitem que você repita independentemente. Critérios fracos ("faça funcionar") requerem esclarecimento constante.
+
+---
+
+**Estas diretrizes estão funcionando se:** menos mudanças desnecessárias nos diffs, menos reescritas devido à complicação excessiva, e perguntas de esclarecimento vêm antes da implementação em vez de depois dos erros.

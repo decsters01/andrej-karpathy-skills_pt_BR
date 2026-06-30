@@ -4,9 +4,10 @@
 >
 > Siga-me no X: [https://x.com/jiayuan_jy](https://x.com/jiayuan_jy)
 
-Um único arquivo `CLAUDE.md` para melhorar o comportamento do Claude Code, derivado das [observações de Andrej Karpathy](https://x.com/karpathy/status/2015883857489522876) sobre armadilhas de codificação de LLMs.
+Um único arquivo [`DIRETRIZES.md`](DIRETRIZES.md) para melhorar o comportamento do Claude Code, derivado das [observações de Andrej Karpathy](https://x.com/karpathy/status/2015883857489522876) sobre armadilhas de codificação de LLMs.
 
-> **Este repositório é exclusivamente em português brasileiro (pt-BR).**
+> **Este repositório é exclusivamente em português brasileiro (pt-BR).**  
+> `README.md` e [`LEIA-ME.md`](LEIA-ME.md) são o mesmo arquivo (convenção do GitHub).
 
 ## Os Problemas
 
@@ -23,7 +24,7 @@ Da publicação de Andrej:
 Quatro princípios em um arquivo que abordam diretamente esses problemas:
 
 | Princípio | Aborda |
-|-----------|-----------|
+|-----------|---------|
 | **Pense Antes de Codificar** | Suposições erradas, confusão oculta, compensações ausentes |
 | **Simplicidade Primeiro** | Complicação excessiva, abstrações inchadas |
 | **Mudanças Cirúrgicas** | Edições ortogonais, tocar em código que não deveria |
@@ -98,36 +99,40 @@ Critérios de sucesso fortes permitem que você repita independentemente. Crité
 
 ## Exemplos
 
-Consulte **[EXAMPLES.md](EXAMPLES.md)** para exemplos detalhados de código demonstrando os quatro princípios.
+Consulte **[EXEMPLOS.md](EXEMPLOS.md)** para exemplos detalhados de código demonstrando os quatro princípios.
 
 ## Instalação
 
 **Opção A: Cursor (recomendado)**
 
-Clone este repositório ou copie [`.cursor/rules/karpathy-guidelines.mdc`](.cursor/rules/karpathy-guidelines.mdc) e [`.cursor/rules/idioma-pt-br.mdc`](.cursor/rules/idioma-pt-br.mdc) para o projeto. Consulte [CURSOR.md](CURSOR.md).
+Clone este repositório ou copie [`.cursor/rules/diretrizes-karpathy.mdc`](.cursor/rules/diretrizes-karpathy.mdc) e [`.cursor/rules/idioma-portugues.mdc`](.cursor/rules/idioma-portugues.mdc) para o projeto. Consulte [CURSO-CURSOR.md](CURSO-CURSOR.md).
 
 Skills do Spec Kit para workflow SDD estão em `.cursor/skills/speckit-*/` — use `/speckit-plan`, `/speckit-implement`, etc.
 
-**Opção B: CLAUDE.md (por projeto)**
+**Opção B: DIRETRIZES.md (por projeto)**
 
 Novo projeto:
 ```bash
-curl -o CLAUDE.md https://raw.githubusercontent.com/decsters01/andrej-karpathy-skills_pt_BR/main/CLAUDE.md
+curl -o DIRETRIZES.md https://raw.githubusercontent.com/decsters01/andrej-karpathy-skills_pt_BR/main/DIRETRIZES.md
 ```
 
 Projeto existente (anexar):
 ```bash
-echo "" >> CLAUDE.md
-curl https://raw.githubusercontent.com/decsters01/andrej-karpathy-skills_pt_BR/main/CLAUDE.md >> CLAUDE.md
+echo "" >> DIRETRIZES.md
+curl https://raw.githubusercontent.com/decsters01/andrej-karpathy-skills_pt_BR/main/DIRETRIZES.md >> DIRETRIZES.md
 ```
+
+Compatibilidade Claude Code: [`CLAUDE.md`](CLAUDE.md) aponta para o mesmo conteúdo.
 
 **Opção C: Habilidade pessoal**
 
-Copie [`skills/karpathy-guidelines/SKILL.md`](skills/karpathy-guidelines/SKILL.md) para `~/.cursor/skills/` ou instale via plugin Claude Code a partir deste repositório.
+Copie [`skills/diretrizes-karpathy/SKILL.md`](skills/diretrizes-karpathy/SKILL.md) para `~/.cursor/skills/` ou instale via plugin Claude Code a partir deste repositório.
+
+> O arquivo `SKILL.md` é nome obrigatório do Cursor/Claude Code (não pode ser renomeado).
 
 ## Usando com Cursor
 
-Este repositório inclui uma regra de projeto do Cursor comprometida ([`.cursor/rules/karpathy-guidelines.mdc`](.cursor/rules/karpathy-guidelines.mdc)) para que as mesmas diretrizes se apliquem quando você abrir o projeto no Cursor. Consulte **[CURSOR.md](CURSOR.md)** para configuração, uso da regra em outros projetos e como isso se relaciona com o Claude Code.
+Este repositório inclui regras de projeto do Cursor ([`diretrizes-karpathy.mdc`](.cursor/rules/diretrizes-karpathy.mdc), [`idioma-portugues.mdc`](.cursor/rules/idioma-portugues.mdc)). Consulte **[CURSO-CURSOR.md](CURSO-CURSOR.md)** para configuração e uso em outros projetos.
 
 ## Insight Principal
 
@@ -148,7 +153,7 @@ Essas diretrizes estão funcionando se você vir:
 
 ## Personalização
 
-Estas diretrizes são projetadas para serem mescladas com instruções específicas do projeto. Adicione-as ao seu `CLAUDE.md` existente ou crie um novo.
+Estas diretrizes são projetadas para serem mescladas com instruções específicas do projeto. Adicione-as ao seu `DIRETRIZES.md` existente ou crie um novo.
 
 Para regras específicas do projeto, adicione seções como:
 
