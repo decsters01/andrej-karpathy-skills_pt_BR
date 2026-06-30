@@ -6,7 +6,7 @@
 
 Um único arquivo `CLAUDE.md` para melhorar o comportamento do Claude Code, derivado das [observações de Andrej Karpathy](https://x.com/karpathy/status/2015883857489522876) sobre armadilhas de codificação de LLMs.
 
-[Diretrizes em Português](./README.md) | [English](./README.en.md) | [简体中文](./README.zh.md)
+Português Brasileiro | [English](./README.en.md) | [简体中文](./README.zh.md)
 
 ## Os Problemas
 
@@ -94,36 +94,40 @@ Para tarefas de múltiplos passos, declare um plano breve:
 3. [Passo] → verificar: [checagem]
 ```
 
-Critérios de sucesso fortes permitem que o LLM repita independentemente. Critérios fracos ("faça funcionar") requerem esclarecimento constante.
+Critérios de sucesso fortes permitem que você repita independentemente. Critérios fracos ("faça funcionar") requerem esclarecimento constante.
+
+## Exemplos
+
+Consulte **[EXAMPLES.pt-br.md](EXAMPLES.pt-br.md)** para exemplos detalhados de código demonstrando os quatro princípios. Versão em inglês: [EXAMPLES.md](EXAMPLES.md).
 
 ## Instalação
 
-**Opção A: Plugin Claude Code (recomendado)**
+**Opção A: Plugin Claude Code**
 
-Dentro do Claude Code, primeiro adicione o marketplace:
+O marketplace upstream (`forrestchang/andrej-karpathy-skills`) distribui a versão em inglês. Para português brasileiro, use a **Opção B** ou copie manualmente os arquivos deste repositório.
+
+Instalação upstream (inglês):
 ```
 /plugin marketplace add forrestchang/andrej-karpathy-skills
-```
-
-Então instale o plugin:
-```
 /plugin install andrej-karpathy-skills@karpathy-skills
 ```
 
-Isso instala as diretrizes como um plugin Claude Code, tornando a habilidade disponível em todos os seus projetos.
-
-**Opção B: CLAUDE.md (por projeto)**
+**Opção B: CLAUDE.md (por projeto, pt-BR)**
 
 Novo projeto:
 ```bash
-curl -o CLAUDE.md https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md
+curl -o CLAUDE.md https://raw.githubusercontent.com/decsters01/andrej-karpathy-skills_pt_BR/main/CLAUDE.md
 ```
 
 Projeto existente (anexar):
 ```bash
 echo "" >> CLAUDE.md
-curl https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md >> CLAUDE.md
+curl https://raw.githubusercontent.com/decsters01/andrej-karpathy-skills_pt_BR/main/CLAUDE.md >> CLAUDE.md
 ```
+
+**Opção C: Cursor (recomendado para pt-BR)**
+
+Clone este repositório ou copie [`.cursor/rules/karpathy-guidelines.mdc`](.cursor/rules/karpathy-guidelines.mdc) e [`.cursor/rules/idioma-pt-br.mdc`](.cursor/rules/idioma-pt-br.mdc) para o projeto. Consulte [CURSOR.md](CURSOR.md).
 
 ## Usando com Cursor
 
