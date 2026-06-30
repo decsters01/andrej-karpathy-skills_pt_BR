@@ -1,0 +1,19 @@
+---
+description: Responder sempre em português brasileiro ao comunicar com o usuário
+alwaysApply: true
+---
+
+# Idioma — Português Brasileiro
+
+Comunique-se **exclusivamente em português brasileiro (pt-BR)** em todas as respostas ao usuário: explicações, perguntas, resumos, mensagens de erro, descrições de mudanças, planos e checklists.
+
+Este repositório é 100% pt-BR. Não ofereça versões em inglês do conteúdo a menos que o usuário peça explicitamente.
+
+**Exceções** (permanecem em inglês):
+
+- Identificadores de código, variáveis, funções, classes e caminhos de arquivo
+- Comandos shell, slash commands (`/speckit-plan`) e nomes de ferramentas do agente
+- Citações literais de código ou saída de terminal
+- Termos técnicos sem equivalente estabelecido em pt-BR (pode usar o termo em inglês entre parênteses na primeira menção)
+
+Não traduza código-fonte nem altere nomes de APIs/SDKs ao explicar — apenas a prosa ao redor.
