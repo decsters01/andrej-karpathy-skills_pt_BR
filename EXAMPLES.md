@@ -1,16 +1,16 @@
-# Examples
+# Exemplos
 
-Real-world code examples demonstrating the four principles. Each example shows what LLMs commonly do wrong and how to fix it.
+Exemplos de código do mundo real demonstrando os quatro princípios. Cada exemplo mostra o que LLMs comumente fazem de errado e como corrigir.
 
 ---
 
-## 1. Think Before Coding
+## 1. Pense Antes de Codificar
 
-### Example 1: Hidden Assumptions
+### Exemplo 1: Suposições Ocultas
 
-**User Request:** "Add a feature to export user data"
+**Solicitação do Usuário:** "Adicione uma funcionalidade para exportar dados do usuário"
 
-**❌ What LLMs Do (Wrong Assumptions)**
+**❌ O Que LLMs Fazem (Suposições Erradas)**
 
 ```python
 def export_users(format='json'):
@@ -29,36 +29,36 @@ def export_users(format='json'):
     return f"Exported {len(users)} users"
 ```
 
-**Problems:**
-- Assumed it should export ALL users (what about pagination? privacy?)
-- Assumed file location without asking
-- Assumed which fields to include
-- Assumed CSV fieldnames without checking actual data structure
+**Problemas:**
+- Assumiu que deveria exportar TODOS os usuários (e quanto à paginação? privacidade?)
+- Assumiu local do arquivo sem perguntar
+- Assumiu quais campos incluir
+- Assumiu nomes de colunas CSV sem verificar a estrutura real dos dados
 
-**✅ What Should Happen (Surface Assumptions)**
+**✅ O Que Deveria Acontecer (Expor Suposições)**
 
 ```
-Before implementing, I need to clarify:
+Antes de implementar, preciso esclarecer:
 
-1. **Scope**: Export all users or filtered subset? (privacy implications)
-2. **Format**: You mentioned "export" - did you mean:
-   - Download file in browser?
-   - Background job with email notification?
-   - API endpoint returning data?
-3. **Fields**: Which user fields? (some might be sensitive)
-4. **Volume**: How many users typically? (affects approach)
+1. **Escopo**: Exportar todos os usuários ou subconjunto filtrado? (implicações de privacidade)
+2. **Formato**: Você mencionou "exportar" — você quis dizer:
+   - Download de arquivo no navegador?
+   - Job em background com notificação por e-mail?
+   - Endpoint de API retornando dados?
+3. **Campos**: Quais campos do usuário? (alguns podem ser sensíveis)
+4. **Volume**: Quantos usuários tipicamente? (afeta a abordagem)
 
-Simplest approach: Add an API endpoint that returns paginated JSON.
-Would need more info for file-based exports.
+Abordagem mais simples: Adicionar um endpoint de API que retorna JSON paginado.
+Precisaria de mais informações para exportações baseadas em arquivo.
 
-What's your preference?
+Qual é sua preferência?
 ```
 
-### Example 2: Multiple Interpretations
+### Exemplo 2: Múltiplas Interpretações
 
-**User Request:** "Make the search faster"
+**Solicitação do Usuário:** "Torne a busca mais rápida"
 
-**❌ What LLMs Do (Pick Silently)**
+**❌ O Que LLMs Fazem (Escolhem Silenciosamente)**
 
 ```python
 # Adds caching, database indexes, and async processing
@@ -68,39 +68,39 @@ async def search(query: str) -> List[Result]:
     # ... 200 lines of optimization code
 ```
 
-**✅ What Should Happen**
+**✅ O Que Deveria Acontecer**
 
 ```
-"Make the search faster" could mean:
+"Torne a busca mais rápida" pode significar:
 
-1. **Faster response time** (< 100ms instead of 500ms)
-   - Add database indexes
-   - Cache frequent queries
-   - Estimated effort: 2 hours
+1. **Tempo de resposta mais rápido** (< 100ms em vez de 500ms)
+   - Adicionar índices no banco de dados
+   - Cachear consultas frequentes
+   - Esforço estimado: 2 horas
 
-2. **Handle more concurrent searches** (throughput)
-   - Add async/await
-   - Connection pooling
-   - Estimated effort: 4 hours
+2. **Lidar com mais buscas concorrentes** (throughput)
+   - Adicionar async/await
+   - Pool de conexões
+   - Esforço estimado: 4 horas
 
-3. **Faster perceived speed** (UX)
-   - Show partial results immediately
-   - Progressive loading
-   - Estimated effort: 3 hours
+3. **Velocidade percebida mais rápida** (UX)
+   - Mostrar resultados parciais imediatamente
+   - Carregamento progressivo
+   - Esforço estimado: 3 horas
 
-Current search takes ~500ms for typical queries. 
-Which aspect matters most for your use case?
+A busca atual leva ~500ms para consultas típicas.
+Qual aspecto importa mais para o seu caso de uso?
 ```
 
 ---
 
-## 2. Simplicity First
+## 2. Simplicidade Primeiro
 
-### Example 1: Over-abstraction
+### Exemplo 1: Super-abstração
 
-**User Request:** "Add a function to calculate discount"
+**Solicitação do Usuário:** "Adicione uma função para calcular desconto"
 
-**❌ What LLMs Do (Overengineered)**
+**❌ O Que LLMs Fazem (Superengenharia)**
 
 ```python
 from abc import ABC, abstractmethod
@@ -146,7 +146,7 @@ class DiscountCalculator:
 # Usage requires 30+ lines of setup for a simple calculation
 ```
 
-**✅ What Should Happen (Simple)**
+**✅ O Que Deveria Acontecer (Simples)**
 
 ```python
 def calculate_discount(amount: float, percent: float) -> float:
@@ -157,13 +157,13 @@ def calculate_discount(amount: float, percent: float) -> float:
 discount = calculate_discount(100.0, 10.0)  # $10 off
 ```
 
-**When to add complexity:** Only when you actually need multiple discount types. If that requirement comes later, refactor then.
+**Quando adicionar complexidade:** Apenas quando você realmente precisar de múltiplos tipos de desconto. Se esse requisito surgir depois, refatore então.
 
-### Example 2: Speculative Features
+### Exemplo 2: Funcionalidades Especulativas
 
-**User Request:** "Save user preferences to database"
+**Solicitação do Usuário:** "Salve preferências do usuário no banco de dados"
 
-**❌ What LLMs Do (Unnecessary Features)**
+**❌ O Que LLMs Fazem (Funcionalidades Desnecessárias)**
 
 ```python
 class PreferenceManager:
@@ -207,7 +207,7 @@ class PreferenceManager:
         pass
 ```
 
-**✅ What Should Happen (Just What Was Asked)**
+**✅ O Que Deveria Acontecer (Apenas o Solicitado)**
 
 ```python
 def save_preferences(db, user_id: int, preferences: dict):
@@ -218,17 +218,17 @@ def save_preferences(db, user_id: int, preferences: dict):
     )
 ```
 
-**Add later if needed:** Caching (when performance matters), validation (when bad data appears), merging (when requirement emerges).
+**Adicionar depois se necessário:** Cache (quando performance importar), validação (quando dados ruins aparecerem), merge (quando o requisito surgir).
 
 ---
 
-## 3. Surgical Changes
+## 3. Mudanças Cirúrgicas
 
-### Example 1: Drive-by Refactoring
+### Exemplo 1: Refatoração Incidental
 
-**User Request:** "Fix the bug where empty emails crash the validator"
+**Solicitação do Usuário:** "Corrija o bug onde e-mails vazios quebram o validador"
 
-**❌ What LLMs Do (Too Much)**
+**❌ O Que LLMs Fazem (Demais)**
 
 ```diff
   def validate_user(user_data):
@@ -260,13 +260,13 @@ def save_preferences(db, user_id: int, preferences: dict):
       return True
 ```
 
-**Problems:**
-- "Improved" email validation beyond the bug fix
-- Added username validation nobody asked for
-- Changed comments
-- Added docstring
+**Problemas:**
+- "Melhorou" validação de e-mail além da correção do bug
+- Adicionou validação de username que ninguém pediu
+- Alterou comentários
+- Adicionou docstring
 
-**✅ What Should Happen (Surgical)**
+**✅ O Que Deveria Acontecer (Cirúrgico)**
 
 ```diff
   def validate_user(user_data):
@@ -288,13 +288,13 @@ def save_preferences(db, user_id: int, preferences: dict):
       return True
 ```
 
-**Only changed:** The specific lines that fix empty email handling.
+**Alterou apenas:** As linhas específicas que corrigem o tratamento de e-mail vazio.
 
-### Example 2: Style Drift
+### Exemplo 2: Deriva de Estilo
 
-**User Request:** "Add logging to the upload function"
+**Solicitação do Usuário:** "Adicione logging à função de upload"
 
-**❌ What LLMs Do (Reformat Everything)**
+**❌ O Que LLMs Fazem (Reformatam Tudo)**
 
 ```diff
 - def upload_file(file_path, destination):
@@ -329,14 +329,14 @@ def save_preferences(db, user_id: int, preferences: dict):
           return False
 ```
 
-**Problems:**
-- Changed quote style ('' to "")
-- Added type hints nobody asked for
-- Added docstring
-- Reformatted whitespace
-- Changed boolean return logic
+**Problemas:**
+- Mudou estilo de aspas ('' para "")
+- Adicionou type hints que ninguém pediu
+- Adicionou docstring
+- Reformatou espaçamento
+- Alterou lógica de retorno booleano
 
-**✅ What Should Happen (Match Existing Style)**
+**✅ O Que Deveria Acontecer (Combinar com Estilo Existente)**
 
 ```diff
 + import logging
@@ -363,58 +363,58 @@ def save_preferences(db, user_id: int, preferences: dict):
           return False
 ```
 
-**Matched:** Single quotes, no type hints, existing boolean pattern, spacing style.
+**Combinou com:** Aspas simples, sem type hints, padrão booleano existente, estilo de espaçamento.
 
 ---
 
-## 4. Goal-Driven Execution
+## 4. Execução Orientada a Objetivos
 
-### Example 1: Vague vs. Verifiable
+### Exemplo 1: Vago vs. Verificável
 
-**User Request:** "Fix the authentication system"
+**Solicitação do Usuário:** "Corrija o sistema de autenticação"
 
-**❌ What LLMs Do (Vague Approach)**
-
-```
-I'll fix the authentication system by:
-1. Reviewing the code
-2. Identifying issues
-3. Making improvements
-4. Testing the changes
-
-[Proceeds to make changes without clear success criteria]
-```
-
-**✅ What Should Happen (Verifiable Goals)**
+**❌ O Que LLMs Fazem (Abordagem Vaga)**
 
 ```
-To "fix authentication," I need to define success criteria. 
-What specific issue are we solving?
+Vou corrigir o sistema de autenticação:
+1. Revisando o código
+2. Identificando problemas
+3. Fazendo melhorias
+4. Testando as mudanças
 
-If the issue is "users stay logged in after password change":
-
-Plan:
-1. Write test: Change password → verify old session invalidated
-   Verify: Test fails (reproduces bug)
-
-2. Implement: Invalidate sessions on password change
-   Verify: Test passes
-
-3. Check edge cases: Multiple active sessions, concurrent changes
-   Verify: Additional tests pass
-
-4. Verify no regression: Existing auth tests still pass
-   Verify: Full test suite green
-
-Current test coverage for auth: [shows coverage]
-What's the specific auth issue you're seeing?
+[Prossegue fazendo mudanças sem critérios claros de sucesso]
 ```
 
-### Example 2: Multi-Step with Verification
+**✅ O Que Deveria Acontecer (Objetivos Verificáveis)**
 
-**User Request:** "Add rate limiting to the API"
+```
+Para "corrigir autenticação", preciso definir critérios de sucesso.
+Qual problema específico estamos resolvendo?
 
-**❌ What LLMs Do (All at Once)**
+Se o problema é "usuários permanecem logados após troca de senha":
+
+Plano:
+1. Escrever teste: Trocar senha → verificar sessão antiga invalidada
+   Verificar: Teste falha (reproduz o bug)
+
+2. Implementar: Invalidar sessões na troca de senha
+   Verificar: Teste passa
+
+3. Verificar casos extremos: Múltiplas sessões ativas, mudanças concorrentes
+   Verificar: Testes adicionais passam
+
+4. Verificar sem regressão: Testes de auth existentes ainda passam
+   Verificar: Suite completa verde
+
+Cobertura atual de testes para auth: [mostra cobertura]
+Qual é o problema específico de auth que você está vendo?
+```
+
+### Exemplo 2: Multi-etapas com Verificação
+
+**Solicitação do Usuário:** "Adicione rate limiting à API"
+
+**❌ O Que LLMs Fazem (Tudo de Uma Vez)**
 
 ```python
 # Implements full rate limiting with Redis, multiple strategies,
@@ -422,40 +422,40 @@ What's the specific auth issue you're seeing?
 # No clear verification steps
 ```
 
-**✅ What Should Happen (Incremental with Verification)**
+**✅ O Que Deveria Acontecer (Incremental com Verificação)**
 
 ```
-Plan for rate limiting:
+Plano para rate limiting:
 
-1. Add basic in-memory rate limiting (single endpoint)
-   Verify: 
-   - Test: 100 requests → first 10 succeed, rest get 429
-   - Manual: curl endpoint 11 times, see rate limit error
+1. Adicionar rate limiting básico em memória (endpoint único)
+   Verificar: 
+   - Teste: 100 requisições → primeiras 10 sucedem, resto recebe 429
+   - Manual: curl endpoint 11 vezes, ver erro de rate limit
 
-2. Extract to middleware (apply to all endpoints)
-   Verify:
-   - Test: Rate limits apply to /users and /posts
-   - Existing endpoint tests still pass
+2. Extrair para middleware (aplicar a todos os endpoints)
+   Verificar:
+   - Teste: Rate limits aplicam a /users e /posts
+   - Testes de endpoints existentes ainda passam
 
-3. Add Redis backend (for multi-server)
-   Verify:
-   - Test: Rate limit persists across app restarts
-   - Test: Two app instances share rate limit counter
+3. Adicionar backend Redis (para multi-servidor)
+   Verificar:
+   - Teste: Rate limit persiste após reinícios do app
+   - Teste: Duas instâncias compartilham contador de rate limit
 
-4. Add configuration (rates per endpoint)
-   Verify:
-   - Test: /search allows 10/min, /users allows 100/min
-   - Config file parsed correctly
+4. Adicionar configuração (taxas por endpoint)
+   Verificar:
+   - Teste: /search permite 10/min, /users permite 100/min
+   - Arquivo de config parseado corretamente
 
-Each step is independently verifiable and deployable.
-Start with step 1?
+Cada etapa é independentemente verificável e implantável.
+Começar com a etapa 1?
 ```
 
-### Example 3: Test-First Verification
+### Exemplo 3: Verificação Test-First
 
-**User Request:** "The sorting breaks when there are duplicate scores"
+**Solicitação do Usuário:** "A ordenação quebra quando há pontuações duplicadas"
 
-**❌ What LLMs Do (Fix Without Reproducing)**
+**❌ O Que LLMs Fazem (Corrigem Sem Reproduzir)**
 
 ```python
 # Immediately changes sort logic without confirming the bug
@@ -463,7 +463,7 @@ def sort_scores(scores):
     return sorted(scores, key=lambda x: (-x['score'], x['name']))
 ```
 
-**✅ What Should Happen (Reproduce First)**
+**✅ O Que Deveria Acontecer (Reproduzir Primeiro)**
 
 ```python
 # 1. First, write a test that reproduces the issue
@@ -495,28 +495,28 @@ def sort_scores(scores):
 
 ---
 
-## Anti-Patterns Summary
+## Resumo de Anti-padrões
 
-| Principle | Anti-Pattern | Fix |
-|-----------|-------------|-----|
-| Think Before Coding | Silently assumes file format, fields, scope | List assumptions explicitly, ask for clarification |
-| Simplicity First | Strategy pattern for single discount calculation | One function until complexity is actually needed |
-| Surgical Changes | Reformats quotes, adds type hints while fixing bug | Only change lines that fix the reported issue |
-| Goal-Driven | "I'll review and improve the code" | "Write test for bug X → make it pass → verify no regressions" |
+| Princípio | Anti-padrão | Correção |
+|-----------|-------------|----------|
+| Pense Antes de Codificar | Assume silenciosamente formato de arquivo, campos, escopo | Liste suposições explicitamente, peça esclarecimento |
+| Simplicidade Primeiro | Strategy pattern para cálculo de desconto único | Uma função até a complexidade ser realmente necessária |
+| Mudanças Cirúrgicas | Reformata aspas, adiciona type hints ao corrigir bug | Altere apenas linhas que corrigem o problema reportado |
+| Execução Orientada a Objetivos | "Vou revisar e melhorar o código" | "Escrever teste para bug X → fazê-lo passar → verificar sem regressões" |
 
-## Key Insight
+## Insight Principal
 
-The "overcomplicated" examples aren't obviously wrong—they follow design patterns and best practices. The problem is **timing**: they add complexity before it's needed, which:
+Os exemplos "supercomplicados" não são obviamente errados — seguem padrões de design e boas práticas. O problema é o **timing**: adicionam complexidade antes de ser necessária, o que:
 
-- Makes code harder to understand
-- Introduces more bugs
-- Takes longer to implement
-- Harder to test
+- Torna o código mais difícil de entender
+- Introduz mais bugs
+- Leva mais tempo para implementar
+- É mais difícil de testar
 
-The "simple" versions are:
-- Easier to understand
-- Faster to implement
-- Easier to test
-- Can be refactored later when complexity is actually needed
+As versões "simples" são:
+- Mais fáceis de entender
+- Mais rápidas de implementar
+- Mais fáceis de testar
+- Podem ser refatoradas depois quando a complexidade for realmente necessária
 
-**Good code is code that solves today's problem simply, not tomorrow's problem prematurely.**
+**Bom código é código que resolve o problema de hoje de forma simples, não o problema de amanhã prematuramente.**

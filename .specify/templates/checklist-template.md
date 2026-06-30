@@ -20,13 +20,13 @@
   ============================================================================
 -->
 
-## [Category 1]
+## [Categoria 1]
 
 - [ ] CHK001 Primeiro item de checklist com ação clara
 - [ ] CHK002 Segundo item de checklist
 - [ ] CHK003 Terceiro item de checklist
 
-## [Category 2]
+## [Categoria 2]
 
 - [ ] CHK004 Item de outra categoria
 - [ ] CHK005 Item com critérios específicos

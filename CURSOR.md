@@ -21,7 +21,7 @@ Se você quiser o mesmo conteúdo como uma habilidade reutilizável em `~/.curso
 
 ## Claude Code vs Cursor
 
-- **Claude Code:** Para pt-BR, use `curl` do fork `decsters01/andrej-karpathy-skills_pt_BR` conforme [`README.md`](README.md). O marketplace upstream distribui inglês.
+- **Claude Code:** Use `curl` do fork `decsters01/andrej-karpathy-skills_pt_BR` conforme [`README.md`](README.md).
 - **Cursor:** Use os arquivos `.cursor/rules/` comprometidos conforme descrito acima. O Cursor não lê `.claude-plugin/` ou `CLAUDE.md` por padrão.
 
 ## Para contribuidores

@@ -1,7 +1,7 @@
 ---
 name: "speckit-constitution"
 description: "Criar ou atualizar a constitution do projeto a partir de entradas de princípios interativas ou fornecidas, garantindo que todos os templates dependentes permaneçam sincronizados."
-compatibility: "Requires spec-kit project structure with .specify/ directory"
+compatibility: "Requer estrutura de projeto spec-kit com diretório .specify/"
 metadata:
   author: "github-spec-kit"
   source: "templates/commands/constitution.md"
@@ -30,21 +30,21 @@ Você **DEVE** considerar a entrada do usuário antes de prosseguir (se não est
 - Para cada hook executável, produza o seguinte com base na flag `optional`:
   - **Hook opcional** (`optional: true`):
     ```
-    ## Extension Hooks
+    ## Hooks de Extensão
 
-    **Pre-Hook Opcional**: {extension}
-    Command: `/{command}`
-    Description: {description}
+    **Pré-Hook Opcional**: {extension}
+    Comando: `/{command}`
+    Descrição: {description}
 
-    Prompt: {prompt}
+    Instrução: {prompt}
     Para executar: `/{command}`
     ```
   - **Hook obrigatório** (`optional: false`):
     ```
-    ## Extension Hooks
+    ## Hooks de Extensão
 
-    **Pre-Hook Automático**: {extension}
-    Executing: `/{command}`
+    **Pré-Hook Automático**: {extension}
+    Executando: `/{command}`
     EXECUTE_COMMAND: {command}
 
     Aguarde o resultado do comando do hook antes de prosseguir para o Roteiro.
@@ -135,21 +135,21 @@ Verifique se `.specify/extensions.yml` existe na raiz do projeto.
 - Para cada hook executável, produza o seguinte com base na flag `optional`:
   - **Hook opcional** (`optional: true`):
     ```
-    ## Extension Hooks
+    ## Hooks de Extensão
 
     **Hook Opcional**: {extension}
-    Command: `/{command}`
-    Description: {description}
+    Comando: `/{command}`
+    Descrição: {description}
 
-    Prompt: {prompt}
+    Instrução: {prompt}
     Para executar: `/{command}`
     ```
   - **Hook obrigatório** (`optional: false`):
     ```
-    ## Extension Hooks
+    ## Hooks de Extensão
 
     **Hook Automático**: {extension}
-    Executing: `/{command}`
+    Executando: `/{command}`
     EXECUTE_COMMAND: {command}
     ```
     Após emitir o bloco acima, você DEVE realmente invocar o hook e aguardar sua conclusão antes de continuar. Execute-o da mesma forma que executaria o comando neste agente/sessão (a invocação pode diferir do id literal `{command}` mostrado acima, por exemplo, um agente em modo skills o executa como `/skill:speckit-...` ou `$speckit-...`). Emitir o bloco sozinho não executa o hook.

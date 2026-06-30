@@ -1,7 +1,7 @@
 ---
 name: "speckit-clarify"
 description: "Identificar áreas subespecificadas na spec da feature atual fazendo até 5 perguntas de esclarecimento altamente direcionadas e codificando as respostas de volta na spec."
-compatibility: "Requires spec-kit project structure with .specify/ directory"
+compatibility: "Requer estrutura de projeto spec-kit com diretório .specify/"
 metadata:
   author: "github-spec-kit"
   source: "templates/commands/clarify.md"
@@ -30,21 +30,21 @@ Você **DEVE** considerar a entrada do usuário antes de prosseguir (se não est
 - Para cada hook executável, produza o seguinte com base na flag `optional`:
   - **Hook opcional** (`optional: true`):
     ```
-    ## Extension Hooks
+    ## Hooks de Extensão
 
-    **Pre-Hook Opcional**: {extension}
-    Command: `/{command}`
-    Description: {description}
+    **Pré-Hook Opcional**: {extension}
+    Comando: `/{command}`
+    Descrição: {description}
 
-    Prompt: {prompt}
+    Instrução: {prompt}
     Para executar: `/{command}`
     ```
   - **Hook obrigatório** (`optional: false`):
     ```
-    ## Extension Hooks
+    ## Hooks de Extensão
 
-    **Pre-Hook Automático**: {extension}
-    Executing: `/{command}`
+    **Pré-Hook Automático**: {extension}
+    Executando: `/{command}`
     EXECUTE_COMMAND: {command}
 
     Aguarde o resultado do comando do hook antes de prosseguir para o Roteiro.
@@ -69,7 +69,7 @@ Etapas de execução:
 
 2. **SE EXISTIR**: Carregue `.specify/memory/constitution.md` para princípios do projeto e restrições de governança.
 
-3. Carregue o arquivo de spec atual. Execute uma varredura estruturada de ambiguidade e cobertura usando esta taxonomia. Para cada categoria, marque status: Clear / Partial / Missing. Produza um mapa interno de cobertura usado para priorização (não produza o mapa bruto a menos que nenhuma pergunta será feita).
+3. Carregue o arquivo de spec atual. Execute uma varredura estruturada de ambiguidade e cobertura usando esta taxonomia. Para cada categoria, marque status: Claro / Parcial / Ausente. Produza um mapa interno de cobertura usado para priorização (não produza o mapa bruto a menos que nenhuma pergunta será feita).
 
    Escopo Funcional e Comportamento:
    - Objetivos principais do usuário e critérios de sucesso
@@ -129,7 +129,7 @@ Etapas de execução:
     - Máximo de 5 perguntas no total na sessão.
     - Cada pergunta deve ser respondível com OU:
        - Uma seleção de múltipla escolha curta (2–5 opções distintas e mutuamente exclusivas), OU
-       - Uma resposta de uma palavra / frase curta (restrinja explicitamente: "Answer in <=5 words").
+       - Uma resposta de uma palavra / frase curta (restrinja explicitamente: "Responda em <=5 palavras").
     - Inclua apenas perguntas cujas respostas impactam materialmente arquitetura, modelagem de dados, decomposição de tarefas, design de testes, comportamento de UX, prontidão operacional ou validação de compliance.
     - Garanta equilíbrio de cobertura de categorias: tente cobrir primeiro as categorias não resolvidas de maior impacto; evite duas perguntas de baixo impacto quando uma única área de alto impacto (ex. postura de segurança) estiver não resolvida.
     - Exclua perguntas já respondidas, preferências estilísticas triviais ou detalhes de execução em nível de plano (a menos que bloqueiem correção).
@@ -145,29 +145,29 @@ Etapas de execução:
           - Redução de risco (segurança, performance, manutenibilidade)
           - Alinhamento com quaisquer objetivos ou restrições explícitos do projeto visíveis na spec
        - Apresente sua **opção recomendada em destaque** no topo com raciocínio claro (1-2 frases explicando por que esta é a melhor escolha).
-       - Formate como: `**Recommended:** Option [X] - <reasoning>`
+       - Formate como: `**Recomendado:** Opção [X] - <raciocínio>`
        - Em seguida, renderize todas as opções como tabela Markdown:
 
-       | Option | Description |
+       | Opção | Descrição |
        |--------|-------------|
-       | A | <Option A description> |
-       | B | <Option B description> |
-       | C | <Option C description> (add D/E as needed up to 5) |
-       | Short | Provide a different short answer (<=5 words) (Include only if free-form alternative is appropriate) |
+       | A | <Descrição da Opção A> |
+       | B | <Descrição da Opção B> |
+       | C | <Descrição da Opção C> (adicione D/E conforme necessário, até 5) |
+       | Curta | Forneça uma resposta curta diferente (<=5 palavras) (Inclua apenas se alternativa de texto livre for apropriada) |
 
-       - Após a tabela, adicione: `You can reply with the option letter (e.g., "A"), accept the recommendation by saying "yes" or "recommended", or provide your own short answer.`
+       - Após a tabela, adicione: `Você pode responder com a letra da opção (ex.: "A"), aceitar a recomendação dizendo "sim" ou "recomendado", ou fornecer sua própria resposta curta.`
     - Para estilo de resposta curta (sem opções discretas significativas):
        - Forneça sua **resposta sugerida** com base em melhores práticas e contexto.
-       - Formate como: `**Suggested:** <your proposed answer> - <brief reasoning>`
-       - Em seguida, produza: `Format: Short answer (<=5 words). You can accept the suggestion by saying "yes" or "suggested", or provide your own answer.`
+       - Formate como: `**Sugerido:** <sua resposta proposta> - <raciocínio breve>`
+       - Em seguida, produza: `Formato: Resposta curta (<=5 palavras). Você pode aceitar a sugestão dizendo "sim" ou "sugerido", ou fornecer sua própria resposta.`
     - Após o usuário responder:
-       - Se o usuário responder com "yes", "recommended" ou "suggested", use sua recomendação/sugestão previamente declarada como resposta.
+       - Se o usuário responder com "sim", "recomendado" ou "sugerido", use sua recomendação/sugestão previamente declarada como resposta.
        - Caso contrário, valide que a resposta mapeia para uma opção ou se encaixa na restrição <=5 palavras.
        - Se ambígua, peça desambiguação rápida (a contagem ainda pertence à mesma pergunta; não avance).
        - Uma vez satisfatória, registre na memória de trabalho (ainda não escreva em disco) e passe para a próxima pergunta na fila.
     - Pare de fazer perguntas quando:
        - Todas as ambiguidades críticas forem resolvidas cedo (itens restantes na fila tornam-se desnecessários), OU
-       - O usuário sinalizar conclusão ("done", "good", "no more"), OU
+       - O usuário sinalizar conclusão ("pronto", "ok", "sem mais"), OU
        - Você atingir 5 perguntas feitas.
     - Nunca revele perguntas futuras na fila com antecedência.
     - Se não existirem perguntas válidas no início, reporte imediatamente que não há ambiguidades críticas.
@@ -175,8 +175,8 @@ Etapas de execução:
 6. Integração após CADA resposta aceita (abordagem de atualização incremental):
     - Mantenha representação em memória da spec (carregada uma vez no início) mais o conteúdo bruto do arquivo.
     - Para a primeira resposta integrada nesta sessão:
-       - Garanta que uma seção `## Clarifications` exista (crie-a logo após a seção contextual/visão geral de mais alto nível conforme o template de spec se ausente).
-       - Sob ela, crie (se não presente) um subheading `### Session YYYY-MM-DD` para hoje.
+       - Garanta que uma seção `## Esclarecimentos` exista (crie-a logo após a seção contextual/visão geral de mais alto nível conforme o template de spec se ausente).
+       - Sob ela, crie (se não presente) um subheading `### Sessão YYYY-MM-DD` para hoje.
     - Acrescente uma linha com bullet imediatamente após aceitação: `- Q: <question> → A: <final answer>`.
     - Em seguida, aplique imediatamente o esclarecimento na(s) seção(ões) mais apropriada(s):
        - Ambiguidade funcional → Atualize ou adicione um bullet em Requisitos Funcionais.
@@ -184,7 +184,7 @@ Etapas de execução:
        - Forma de dados / entidades → Atualize Modelo de Dados (adicione campos, tipos, relacionamentos) preservando ordenação; anote restrições adicionadas sucintamente.
        - Restrição não funcional → Adicione/modifique critérios mensuráveis em Critérios de Sucesso > Resultados Mensuráveis (converta adjetivo vago em métrica ou meta explícita).
        - Caso extremo / fluxo negativo → Adicione um novo bullet sob Casos Extremos / Tratamento de Erros (ou crie tal subseção se o template fornecer placeholder para ela).
-       - Conflito de terminologia → Normalize o termo na spec; retenha o original apenas se necessário adicionando `(formerly referred to as "X")` uma vez.
+       - Conflito de terminologia → Normalize o termo na spec; retenha o original apenas se necessário adicionando `(anteriormente referido como "X")` uma vez.
     - Se o esclarecimento invalidar uma declaração ambígua anterior, substitua essa declaração em vez de duplicar; não deixe texto contraditório obsoleto.
     - Salve o arquivo de spec APÓS cada integração para minimizar risco de perda de contexto (sobrescrita atômica).
     - Preserve formatação: não reordene seções não relacionadas; mantenha hierarquia de headings intacta.
@@ -195,7 +195,7 @@ Etapas de execução:
    - Total de perguntas feitas (aceitas) ≤ 5.
    - Seções atualizadas não contêm placeholders vagos remanescentes que a nova resposta deveria resolver.
    - Nenhuma declaração contraditória anterior permanece (escaneie por escolhas alternativas agora inválidas removidas).
-   - Estrutura markdown válida; apenas headings novos permitidos: `## Clarifications`, `### Session YYYY-MM-DD`.
+   - Estrutura markdown válida; apenas headings novos permitidos: `## Esclarecimentos`, `### Sessão YYYY-MM-DD`.
    - Consistência de terminologia: mesmo termo canônico usado em todas as seções atualizadas.
 
 8. Escreva a spec atualizada de volta em `FEATURE_SPEC`.
@@ -206,28 +206,28 @@ Etapas de execução:
    - Se existir:
      1. Leia o arquivo de checklist.
      2. Identifique todas as linhas de checkbox da task list do GitHub — linhas correspondendo a `- [ ]`, `- [x]` ou `- [X]` (case-insensitive, tolerante a espaços iniciais para itens aninhados) fora de code fences. Ignore todo outro conteúdo (headings, notas, bullets sem checkbox, metadados).
-     3. Para cada linha de checkbox, registre seu estado atual de marcador (marcado ou desmarcado) e texto do item em uma lista before-snapshot.
+     3. Para cada linha de checkbox, registre seu estado atual de marcador (marcado ou desmarcado) e texto do item em uma lista de instantâneo-anterior.
      4. Reavalie cada item de checkbox contra a spec **atualizada** (a versão recém-salva na etapa 7).
      5. Para cada item de checkbox, atualize apenas se o estado marcado/desmarcado realmente mudar:
         - Se o item agora passa e estava desmarcado: mude `[ ]` para `[x]`.
         - Se o item agora falha e estava marcado: mude `[x]`/`[X]` para `[ ]`.
         - Se o estado não mudou: deixe o marcador como está (preserve case existente para evitar diffs cosméticos).
      6. Salve o arquivo de checklist atualizado. **Alterne apenas a porção de marcador `[ ]`/`[x]` das linhas de checkbox cujo estado mudou.** Todo outro conteúdo do arquivo — headings, metadados, notas, ordenação de linhas, espaços em branco — deve permanecer inalterado para evitar diffs ruidosos.
-     7. Compare o before-snapshot com o estado atual para computar três listas para o Relatório de Conclusão:
+     7. Compare o instantâneo-anterior com o estado atual para computar três listas para o Relatório de Conclusão:
         - **Recém aprovados**: itens que mudaram de desmarcado para marcado.
         - **Regressões**: itens que mudaram de marcado para desmarcado.
         - **Ainda desmarcados**: itens que permanecem desmarcados.
-     8. Registre as contagens before/after de aprovação como itens marcados/total de itens de checkbox (ex. "12/16 → 15/16 items passing").
+     8. Registre as contagens antes/depois de aprovação como itens marcados/total de itens de checkbox (ex. "12/16 → 15/16 itens aprovados").
 
 Regras de comportamento:
 
-- Se nenhuma ambiguidade significativa for encontrada (ou todas as perguntas potenciais seriam de baixo impacto), responda: "No critical ambiguities detected worth formal clarification." e sugira prosseguir.
+- Se nenhuma ambiguidade significativa for encontrada (ou todas as perguntas potenciais seriam de baixo impacto), responda: "Nenhuma ambiguidade crítica detectada que justifique esclarecimento formal." e sugira prosseguir.
 - Se o arquivo de spec estiver ausente, instrua o usuário a executar `/speckit-specify` primeiro (não crie uma nova spec aqui).
 - Nunca exceda 5 perguntas feitas no total (retentativas de esclarecimento para uma única pergunta não contam como novas perguntas).
 - Evite perguntas especulativas de stack técnica a menos que a ausência bloqueie clareza funcional.
-- Respeite sinais de término antecipado do usuário ("stop", "done", "proceed").
-- Se nenhuma pergunta for feita devido a cobertura completa, produza um resumo compacto de cobertura (todas as categorias Clear) e sugira avançar.
-- Se a cota for atingida com categorias de alto impacto não resolvidas remanescentes, sinalize-as explicitamente sob Deferred com justificativa.
+- Respeite sinais de término antecipado do usuário ("pare", "pronto", "prossiga").
+- Se nenhuma pergunta for feita devido a cobertura completa, produza um resumo compacto de cobertura (todas as categorias Claro) e sugira avançar.
+- Se a cota for atingida com categorias de alto impacto não resolvidas remanescentes, sinalize-as explicitamente sob Adiado com justificativa.
 
 Contexto para priorização: $ARGUMENTS
 
@@ -247,22 +247,22 @@ Verifique se `.specify/extensions.yml` existe na raiz do projeto.
 - Para cada hook executável, produza o seguinte com base na flag `optional`:
   - **Hook obrigatório** (`optional: false`) — **Você DEVE emitir `EXECUTE_COMMAND:` para cada hook obrigatório**:
     ```
-    ## Extension Hooks
+    ## Hooks de Extensão
 
-    **Automatic Hook**: {extension}
-    Executing: `/{command}`
+    **Hook Automático**: {extension}
+    Executando: `/{command}`
     EXECUTE_COMMAND: {command}
     ```
     Após emitir o bloco acima, você DEVE realmente invocar o hook e aguardar sua conclusão antes de continuar. Execute-o da mesma forma que executaria o comando neste agente/sessão (a invocação pode diferir do id literal `{command}` mostrado acima, por exemplo, um agente em modo skills o executa como `/skill:speckit-...` ou `$speckit-...`). Emitir o bloco sozinho não executa o hook.
   - **Hook opcional** (`optional: true`):
     ```
-    ## Extension Hooks
+    ## Hooks de Extensão
 
-    **Optional Hook**: {extension}
-    Command: `/{command}`
-    Description: {description}
+    **Hook Opcional**: {extension}
+    Comando: `/{command}`
+    Descrição: {description}
 
-    Prompt: {prompt}
+    Instrução: {prompt}
     Para executar: `/{command}`
     ```
 
@@ -272,9 +272,9 @@ Reporte a conclusão (após o loop de perguntas terminar ou término antecipado)
 - Número de perguntas feitas e respondidas.
 - Caminho da spec atualizada.
 - Seções tocadas (liste nomes).
-- Status da checklist de qualidade da spec (se `FEATURE_DIR/checklists/requirements.md` foi revalidada): mostre contagens before/after de aprovação (ex. "Spec Quality Checklist: 12/16 → 15/16 items passing") e liste quaisquer itens que mudaram de estado — tanto recém marcados (desmarcado → marcado) quanto regressões (marcado → desmarcado). Se algum item permanecer desmarcado, liste-os como áreas que precisam de atenção.
-- Tabela de resumo de cobertura listando cada categoria da taxonomia com Status: Resolved (era Partial/Missing e foi endereçada), Deferred (excede cota de perguntas ou melhor adequada para planejamento), Clear (já suficiente), Outstanding (ainda Partial/Missing mas baixo impacto).
-- Se Outstanding ou Deferred permanecerem, recomende se prosseguir para `/speckit-plan` ou executar `/speckit-clarify` novamente mais tarde pós-plan.
+- Status da checklist de qualidade da spec (se `FEATURE_DIR/checklists/requirements.md` foi revalidada): mostre contagens antes/depois de aprovação (ex. "Checklist de Qualidade da Spec: 12/16 → 15/16 itens aprovados") e liste quaisquer itens que mudaram de estado — tanto recém marcados (desmarcado → marcado) quanto regressões (marcado → desmarcado). Se algum item permanecer desmarcado, liste-os como áreas que precisam de atenção.
+- Tabela de resumo de cobertura listando cada categoria da taxonomia com Status: Resolvido (era Parcial/Ausente e foi endereçada), Adiado (excede cota de perguntas ou melhor adequada para planejamento), Claro (já suficiente), Pendente (ainda Parcial/Ausente mas baixo impacto).
+- Se Pendente ou Adiado permanecerem, recomende se prosseguir para `/speckit-plan` ou executar `/speckit-clarify` novamente mais tarde pós-plan.
 - Próximo comando sugerido.
 
 ## Concluído Quando

@@ -1,7 +1,7 @@
 ---
 name: "speckit-tasks"
 description: "Gerar um tasks.md acionável e ordenado por dependência para a feature com base nos artefatos de design disponíveis."
-compatibility: "Requires spec-kit project structure with .specify/ directory"
+compatibility: "Requer estrutura de projeto spec-kit com diretório .specify/"
 metadata:
   author: "github-spec-kit"
   source: "templates/commands/tasks.md"
@@ -30,21 +30,21 @@ Você **DEVE** considerar a entrada do usuário antes de prosseguir (se não est
 - Para cada hook executável, produza o seguinte com base na flag `optional`:
   - **Hook opcional** (`optional: true`):
     ```
-    ## Extension Hooks
+    ## Hooks de Extensão
 
-    **Pre-Hook Opcional**: {extension}
-    Command: `/{command}`
-    Description: {description}
+    **Pré-Hook Opcional**: {extension}
+    Comando: `/{command}`
+    Descrição: {description}
 
-    Prompt: {prompt}
+    Instrução: {prompt}
     Para executar: `/{command}`
     ```
   - **Hook obrigatório** (`optional: false`):
     ```
-    ## Extension Hooks
+    ## Hooks de Extensão
 
-    **Pre-Hook Automático**: {extension}
-    Executing: `/{command}`
+    **Pré-Hook Automático**: {extension}
+    Executando: `/{command}`
     EXECUTE_COMMAND: {command}
     
     Aguarde o resultado do comando do hook antes de prosseguir para o Roteiro.
@@ -102,22 +102,22 @@ Verifique se `.specify/extensions.yml` existe na raiz do projeto.
 - Para cada hook executável, produza o seguinte com base na flag `optional`:
   - **Hook obrigatório** (`optional: false`) — **Você DEVE emitir `EXECUTE_COMMAND:` para cada hook obrigatório**:
     ```
-    ## Extension Hooks
+    ## Hooks de Extensão
 
     **Hook Automático**: {extension}
-    Executing: `/{command}`
+    Executando: `/{command}`
     EXECUTE_COMMAND: {command}
     ```
     Após emitir o bloco acima, você DEVE realmente invocar o hook e aguardar sua conclusão antes de continuar. Execute-o da mesma forma que executaria o comando neste agente/sessão (a invocação pode diferir do id literal `{command}` mostrado acima, por exemplo, um agente em modo skills o executa como `/skill:speckit-...` ou `$speckit-...`). Emitir o bloco sozinho não executa o hook.
   - **Hook opcional** (`optional: true`):
     ```
-    ## Extension Hooks
+    ## Hooks de Extensão
 
     **Hook Opcional**: {extension}
-    Command: `/{command}`
-    Description: {description}
+    Comando: `/{command}`
+    Descrição: {description}
 
-    Prompt: {prompt}
+    Instrução: {prompt}
     Para executar: `/{command}`
     ```
 
@@ -146,13 +146,13 @@ O tasks.md deve ser imediatamente executável — cada tarefa deve ser específi
 Cada tarefa DEVE seguir estritamente este formato:
 
 ```text
-- [ ] [TaskID] [P?] [Story?] Description with file path
+- [ ] [TaskID] [P?] [Story?] Descrição com caminho de arquivo
 ```
 
 **Componentes do Formato**:
 
 1. **Checkbox**: SEMPRE comece com `- [ ]` (checkbox markdown)
-2. **Task ID**: Número sequencial (T001, T002, T003...) em ordem de execução
+2. **ID da Tarefa**: Número sequencial (T001, T002, T003...) em ordem de execução
 3. **Marcador [P]**: Inclua APENAS se a tarefa for paralelizável (arquivos diferentes, sem dependências de tarefas incompletas)
 4. **Label [Story]**: OBRIGATÓRIO apenas para tarefas de fase de user story
    - Formato: [US1], [US2], [US3], etc. (mapeia para user stories de spec.md)
@@ -164,14 +164,14 @@ Cada tarefa DEVE seguir estritamente este formato:
 
 **Exemplos**:
 
-- ✅ CORRETO: `- [ ] T001 Create project structure per implementation plan`
-- ✅ CORRETO: `- [ ] T005 [P] Implement authentication middleware in src/middleware/auth.py`
-- ✅ CORRETO: `- [ ] T012 [P] [US1] Create User model in src/models/user.py`
-- ✅ CORRETO: `- [ ] T014 [US1] Implement UserService in src/services/user_service.py`
-- ❌ ERRADO: `- [ ] Create User model` (falta ID e label Story)
-- ❌ ERRADO: `T001 [US1] Create model` (falta checkbox)
-- ❌ ERRADO: `- [ ] [US1] Create User model` (falta Task ID)
-- ❌ ERRADO: `- [ ] T001 [US1] Create model` (falta caminho de arquivo)
+- ✅ CORRETO: `- [ ] T001 Criar estrutura do projeto conforme plano de implementação`
+- ✅ CORRETO: `- [ ] T005 [P] Implementar middleware de autenticação em src/middleware/auth.py`
+- ✅ CORRETO: `- [ ] T012 [P] [US1] Criar model User em src/models/user.py`
+- ✅ CORRETO: `- [ ] T014 [US1] Implementar UserService em src/services/user_service.py`
+- ❌ ERRADO: `- [ ] Criar model User` (falta ID e label Story)
+- ❌ ERRADO: `T001 [US1] Criar model` (falta checkbox)
+- ❌ ERRADO: `- [ ] [US1] Criar model User` (falta Task ID)
+- ❌ ERRADO: `- [ ] T001 [US1] Criar model` (falta caminho de arquivo)
 
 ### Organização de Tarefas
 

@@ -1,7 +1,7 @@
 ---
 name: "speckit-plan"
 description: "Executar o fluxo de trabalho de planejamento de implementação usando o template de plano para gerar artefatos de design."
-compatibility: "Requires spec-kit project structure with .specify/ directory"
+compatibility: "Requer estrutura de projeto spec-kit com diretório .specify/"
 metadata:
   author: "github-spec-kit"
   source: "templates/commands/plan.md"
@@ -30,21 +30,21 @@ Você **DEVE** considerar a entrada do usuário antes de prosseguir (se não est
 - Para cada hook executável, produza o seguinte com base na flag `optional`:
   - **Hook opcional** (`optional: true`):
     ```
-    ## Extension Hooks
+    ## Hooks de Extensão
 
-    **Pre-Hook Opcional**: {extension}
-    Command: `/{command}`
-    Description: {description}
+    **Pré-Hook Opcional**: {extension}
+    Comando: `/{command}`
+    Descrição: {description}
 
-    Prompt: {prompt}
+    Instrução: {prompt}
     Para executar: `/{command}`
     ```
   - **Hook obrigatório** (`optional: false`):
     ```
-    ## Extension Hooks
+    ## Hooks de Extensão
 
-    **Pre-Hook Automático**: {extension}
-    Executing: `/{command}`
+    **Pré-Hook Automático**: {extension}
+    Executando: `/{command}`
     EXECUTE_COMMAND: {command}
 
     Aguarde o resultado do comando do hook antes de prosseguir para o Roteiro.
@@ -59,10 +59,10 @@ Você **DEVE** considerar a entrada do usuário antes de prosseguir (se não est
 2. **Carregar contexto**: Leia FEATURE_SPEC e `.specify/memory/constitution.md`. Carregue o template IMPL_PLAN (já copiado).
 
 3. **Executar fluxo de plano**: Siga a estrutura no template IMPL_PLAN para:
-   - Preencher Contexto Técnico (marque desconhecidos como "NEEDS CLARIFICATION")
+   - Preencher Contexto Técnico (marque desconhecidos como "PRECISA DE ESCLARECIMENTO")
    - Preencher seção Constitution Check a partir da constitution
-   - Avaliar gates (ERROR se violações não justificadas)
-   - Fase 0: Gerar research.md (resolver todos os NEEDS CLARIFICATION)
+   - Avaliar gates (ERRO se violações não justificadas)
+   - Fase 0: Gerar research.md (resolver todos os PRECISA DE ESCLARECIMENTO)
    - Fase 1: Gerar data-model.md, contracts/, quickstart.md
    - Fase 1: Atualizar contexto do agente executando o script do agente
    - Reavaliar Constitution Check pós-design
@@ -83,22 +83,22 @@ Verifique se `.specify/extensions.yml` existe na raiz do projeto.
 - Para cada hook executável, produza o seguinte com base na flag `optional`:
   - **Hook obrigatório** (`optional: false`) — **Você DEVE emitir `EXECUTE_COMMAND:` para cada hook obrigatório**:
     ```
-    ## Extension Hooks
+    ## Hooks de Extensão
 
     **Hook Automático**: {extension}
-    Executing: `/{command}`
+    Executando: `/{command}`
     EXECUTE_COMMAND: {command}
     ```
     Após emitir o bloco acima, você DEVE realmente invocar o hook e aguardar sua conclusão antes de continuar. Execute-o da mesma forma que executaria o comando neste agente/sessão (a invocação pode diferir do id literal `{command}` mostrado acima, por exemplo, um agente em modo skills o executa como `/skill:speckit-...` ou `$speckit-...`). Emitir o bloco sozinho não executa o hook.
   - **Hook opcional** (`optional: true`):
     ```
-    ## Extension Hooks
+    ## Hooks de Extensão
 
     **Hook Opcional**: {extension}
-    Command: `/{command}`
-    Description: {description}
+    Comando: `/{command}`
+    Descrição: {description}
 
-    Prompt: {prompt}
+    Instrução: {prompt}
     Para executar: `/{command}`
     ```
 
@@ -111,25 +111,25 @@ O comando termina após o planejamento da Fase 2. Reporte branch, caminho IMPL_P
 ### Fase 0: Roteiro e Pesquisa
 
 1. **Extrair desconhecidos do Contexto Técnico** acima:
-   - Para cada NEEDS CLARIFICATION → tarefa de pesquisa
+   - Para cada PRECISA DE ESCLARECIMENTO → tarefa de pesquisa
    - Para cada dependência → tarefa de melhores práticas
    - Para cada integração → tarefa de padrões
 
 2. **Gerar e despachar agentes de pesquisa**:
 
    ```text
-   For each unknown in Technical Context:
-     Task: "Research {unknown} for {feature context}"
-   For each technology choice:
-     Task: "Find best practices for {tech} in {domain}"
+   Para cada desconhecido no Contexto Técnico:
+     Tarefa: "Pesquisar {unknown} para {feature context}"
+   Para cada escolha de tecnologia:
+     Tarefa: "Encontrar melhores práticas para {tech} em {domain}"
    ```
 
 3. **Consolidar descobertas** em `research.md` usando o formato:
-   - Decision: [what was chosen]
-   - Rationale: [why chosen]
-   - Alternatives considered: [what else evaluated]
+   - Decisão: [o que foi escolhido]
+   - Justificativa: [por que foi escolhido]
+   - Alternativas consideradas: [o que mais foi avaliado]
 
-**Saída**: research.md com todos os NEEDS CLARIFICATION resolvidos
+**Saída**: research.md com todos os PRECISA DE ESCLARECIMENTO resolvidos
 
 ### Fase 1: Design e Contratos
 
@@ -158,7 +158,7 @@ O comando termina após o planejamento da Fase 2. Reporte branch, caminho IMPL_P
 ## Regras principais
 
 - Use caminhos absolutos para operações no filesystem; use caminhos relativos ao projeto para referências na documentação
-- ERROR em falhas de gate ou esclarecimentos não resolvidos
+- ERRO em falhas de gate ou esclarecimentos não resolvidos
 
 ## Concluído Quando
 

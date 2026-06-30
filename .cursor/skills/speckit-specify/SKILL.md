@@ -1,7 +1,7 @@
 ---
 name: "speckit-specify"
 description: "Criar ou atualizar a especificação da feature a partir de uma descrição de feature em linguagem natural."
-compatibility: "Requires spec-kit project structure with .specify/ directory"
+compatibility: "Requer estrutura de projeto spec-kit com diretório .specify/"
 metadata:
   author: "github-spec-kit"
   source: "templates/commands/specify.md"
@@ -30,21 +30,21 @@ Você **DEVE** considerar a entrada do usuário antes de prosseguir (se não est
 - Para cada hook executável, produza o seguinte com base na flag `optional`:
   - **Hook opcional** (`optional: true`):
     ```
-    ## Extension Hooks
+    ## Hooks de Extensão
 
-    **Pre-Hook Opcional**: {extension}
-    Command: `/{command}`
-    Description: {description}
+    **Pré-Hook Opcional**: {extension}
+    Comando: `/{command}`
+    Descrição: {description}
 
-    Prompt: {prompt}
+    Instrução: {prompt}
     Para executar: `/{command}`
     ```
   - **Hook obrigatório** (`optional: false`):
     ```
-    ## Extension Hooks
+    ## Hooks de Extensão
 
-    **Pre-Hook Automático**: {extension}
-    Executing: `/{command}`
+    **Pré-Hook Automático**: {extension}
+    Executando: `/{command}`
     EXECUTE_COMMAND: {command}
 
     Aguarde o resultado do comando do hook antes de prosseguir para o Roteiro.
@@ -65,10 +65,10 @@ Dada essa descrição da feature, faça o seguinte:
    - Preserve termos técnicos e siglas (OAuth2, API, JWT, etc.)
    - Mantenha conciso mas descritivo o suficiente para entender a feature de relance
    - Exemplos:
-     - "I want to add user authentication" → "user-auth"
-     - "Implement OAuth2 integration for the API" → "oauth2-api-integration"
-     - "Create a dashboard for analytics" → "analytics-dashboard"
-     - "Fix payment processing timeout bug" → "fix-payment-timeout"
+     - "Quero adicionar autenticação de usuário" → "user-auth"
+     - "Implementar integração OAuth2 para a API" → "oauth2-api-integration"
+     - "Criar um dashboard para analytics" → "analytics-dashboard"
+     - "Corrigir bug de timeout no processamento de pagamento" → "fix-payment-timeout"
 
 2. **Criação de branch** (opcional, via hook):
 
@@ -88,7 +88,7 @@ Dada essa descrição da feature, faça o seguinte:
       - Se `"sequential"` ou ausente: prefixo é `NNN` (próximo número de 3 dígitos disponível após escanear diretórios existentes em `specs/`)
       - Construa o nome do diretório: `<prefix>-<short-name>` (ex. `003-user-auth` ou `20260319-143022-user-auth`)
       - Defina `SPECIFY_FEATURE_DIRECTORY` como `specs/<directory-name>`
-      - Se `branch_numbering` foi usado (e `feature_numbering` estava ausente), emita um aviso de uma linha: "⚠️ `branch_numbering` in init-options.json is deprecated. Rename to `feature_numbering`."
+      - Se `branch_numbering` foi usado (e `feature_numbering` estava ausente), emita um aviso de uma linha: "⚠️ `branch_numbering` em init-options.json está obsoleto. Renomeie para `feature_numbering`."
 
    **Criar o diretório e arquivo de spec**:
    - `mkdir -p SPECIFY_FEATURE_DIRECTORY`
@@ -115,19 +115,19 @@ Dada essa descrição da feature, faça o seguinte:
 
 6. Siga este fluxo de execução:
     1. Analise a descrição do usuário dos argumentos
-       Se vazia: ERROR "No feature description provided"
+       Se vazia: ERRO "Nenhuma descrição de feature fornecida"
     2. Extraia conceitos-chave da descrição
        Identifique: atores, ações, dados, restrições
     3. Para aspectos pouco claros:
        - Faça suposições informadas com base no contexto e padrões da indústria
-       - Marque apenas com [NEEDS CLARIFICATION: specific question] se:
+       - Marque apenas com [PRECISA DE ESCLARECIMENTO: specific question] se:
          - A escolha impacta significativamente o escopo da feature ou experiência do usuário
          - Múltiplas interpretações razoáveis existem com implicações diferentes
          - Nenhum default razoável existe
-       - **LIMITE: Máximo de 3 marcadores [NEEDS CLARIFICATION] no total**
+       - **LIMITE: Máximo de 3 marcadores [PRECISA DE ESCLARECIMENTO] no total**
        - Priorize esclarecimentos por impacto: escopo > segurança/privacidade > experiência do usuário > detalhes técnicos
     4. Preencha a seção Cenários de Usuário e Testes
-       Se não houver fluxo de usuário claro: ERROR "Cannot determine user scenarios"
+       Se não houver fluxo de usuário claro: ERRO "Não é possível determinar cenários de usuário"
     5. Gere Requisitos Funcionais
        Cada requisito deve ser testável
        Use defaults razoáveis para detalhes não especificados (documente suposições na seção Premissas)
@@ -145,40 +145,40 @@ Dada essa descrição da feature, faça o seguinte:
    a. **Criar Checklist de Qualidade da Spec**: Gere um arquivo de checklist em `SPECIFY_FEATURE_DIRECTORY/checklists/requirements.md` usando a estrutura do template de checklist com estes itens de validação:
 
       ```markdown
-      # Specification Quality Checklist: [FEATURE NAME]
+      # Checklist de Qualidade da Especificação: [NOME DA FEATURE]
       
-      **Purpose**: Validate specification completeness and quality before proceeding to planning
-      **Created**: [DATE]
-      **Feature**: [Link to spec.md]
+      **Propósito**: Validar completude e qualidade da especificação antes de prosseguir para o planejamento
+      **Criado**: [DATA]
+      **Feature**: [Link para spec.md]
       
-      ## Content Quality
+      ## Qualidade do Conteúdo
       
-      - [ ] No implementation details (languages, frameworks, APIs)
-      - [ ] Focused on user value and business needs
-      - [ ] Written for non-technical stakeholders
-      - [ ] All mandatory sections completed
+      - [ ] Sem detalhes de implementação (linguagens, frameworks, APIs)
+      - [ ] Focado em valor para o usuário e necessidades de negócio
+      - [ ] Escrito para stakeholders não técnicos
+      - [ ] Todas as seções obrigatórias completadas
       
-      ## Requirement Completeness
+      ## Completude dos Requisitos
       
-      - [ ] No [NEEDS CLARIFICATION] markers remain
-      - [ ] Requirements are testable and unambiguous
-      - [ ] Success criteria are measurable
-      - [ ] Success criteria are technology-agnostic (no implementation details)
-      - [ ] All acceptance scenarios are defined
-      - [ ] Edge cases are identified
-      - [ ] Scope is clearly bounded
-      - [ ] Dependencies and assumptions identified
+      - [ ] Nenhum marcador [PRECISA DE ESCLARECIMENTO] permanece
+      - [ ] Requisitos são testáveis e inequívocos
+      - [ ] Critérios de sucesso são mensuráveis
+      - [ ] Critérios de sucesso são agnósticos de tecnologia (sem detalhes de implementação)
+      - [ ] Todos os cenários de aceitação estão definidos
+      - [ ] Casos extremos estão identificados
+      - [ ] Escopo está claramente delimitado
+      - [ ] Dependências e premissas identificadas
       
-      ## Feature Readiness
+      ## Prontidão da Feature
       
-      - [ ] All functional requirements have clear acceptance criteria
-      - [ ] User scenarios cover primary flows
-      - [ ] Feature meets measurable outcomes defined in Success Criteria
-      - [ ] No implementation details leak into specification
+      - [ ] Todos os requisitos funcionais têm critérios de aceitação claros
+      - [ ] Cenários de usuário cobrem fluxos principais
+      - [ ] Feature atende resultados mensuráveis definidos nos Critérios de Sucesso
+      - [ ] Nenhum detalhe de implementação vaza para a especificação
       
-      ## Notes
+      ## Notas
       
-      - Items marked incomplete require spec updates before `/speckit-clarify` or `/speckit-plan`
+      - Itens marcados como incompletos exigem atualizações na spec antes de `/speckit-clarify` ou `/speckit-plan`
       ```
 
    b. **Executar Verificação de Validação**: Revise a spec contra cada item da checklist:
@@ -189,48 +189,48 @@ Dada essa descrição da feature, faça o seguinte:
 
       - **Se todos os itens passarem**: Marque a checklist como completa e prossiga para a seção Hooks Obrigatórios Pós-Execução
 
-      - **Se itens falharem (excluindo [NEEDS CLARIFICATION])**:
+      - **Se itens falharem (excluindo [PRECISA DE ESCLARECIMENTO])**:
         1. Liste os itens que falharam e problemas específicos
         2. Atualize a spec para resolver cada problema
         3. Reexecute a validação até todos os itens passarem (máx. 3 iterações)
         4. Se ainda falhar após 3 iterações, documente problemas restantes nas notas da checklist e avise o usuário
 
-      - **Se marcadores [NEEDS CLARIFICATION] permanecerem**:
-        1. Extraia todos os marcadores [NEEDS CLARIFICATION: ...] da spec
+      - **Se marcadores [PRECISA DE ESCLARECIMENTO] permanecerem**:
+        1. Extraia todos os marcadores [PRECISA DE ESCLARECIMENTO: ...] da spec
         2. **VERIFICAÇÃO DE LIMITE**: Se existirem mais de 3 marcadores, mantenha apenas os 3 mais críticos (por impacto escopo/segurança/UX) e faça suposições informadas para o restante
         3. Para cada esclarecimento necessário (máx. 3), apresente opções ao usuário neste formato:
 
            ```markdown
-           ## Question [N]: [Topic]
+           ## Pergunta [N]: [Tópico]
            
-           **Context**: [Quote relevant spec section]
+           **Contexto**: [Citar seção relevante da spec]
            
-           **What we need to know**: [Specific question from NEEDS CLARIFICATION marker]
+           **O que precisamos saber**: [Pergunta específica do marcador PRECISA DE ESCLARECIMENTO]
            
-           **Suggested Answers**:
+           **Respostas Sugeridas**:
            
-           | Option | Answer | Implications |
+           | Opção | Resposta | Implicações |
            |--------|--------|--------------|
-           | A      | [First suggested answer] | [What this means for the feature] |
-           | B      | [Second suggested answer] | [What this means for the feature] |
-           | C      | [Third suggested answer] | [What this means for the feature] |
-           | Custom | Provide your own answer | [Explain how to provide custom input] |
+           | A      | [Primeira resposta sugerida] | [O que isso significa para a feature] |
+           | B      | [Segunda resposta sugerida] | [O que isso significa para a feature] |
+           | C      | [Terceira resposta sugerida] | [O que isso significa para a feature] |
+           | Personalizado | Forneça sua própria resposta | [Explique como fornecer entrada personalizada] |
            
-           **Your choice**: _[Wait for user response]_
+           **Sua escolha**: _[Aguarde resposta do usuário]_
            ```
 
         4. **CRÍTICO - Formatação de Tabela**: Garanta que tabelas markdown estejam formatadas corretamente:
            - Use espaçamento consistente com pipes alinhados
-           - Cada célula deve ter espaços ao redor do conteúdo: `| Content |` não `|Content|`
+           - Cada célula deve ter espaços ao redor do conteúdo: `| Conteúdo |` não `|Conteúdo|`
            - Separador de cabeçalho deve ter pelo menos 3 traços: `|--------|`
            - Teste que a tabela renderiza corretamente na pré-visualização markdown
         5. Numere perguntas sequencialmente (Q1, Q2, Q3 - máx. 3 no total)
         6. Apresente todas as perguntas juntas antes de aguardar respostas
-        7. Aguarde o usuário responder com suas escolhas para todas as perguntas (ex. "Q1: A, Q2: Custom - [details], Q3: B")
-        8. Atualize a spec substituindo cada marcador [NEEDS CLARIFICATION] pela resposta selecionada ou fornecida pelo usuário
+        7. Aguarde o usuário responder com suas escolhas para todas as perguntas (ex. "Q1: A, Q2: Personalizado - [detalhes], Q3: B")
+        8. Atualize a spec substituindo cada marcador [PRECISA DE ESCLARECIMENTO] pela resposta selecionada ou fornecida pelo usuário
         9. Reexecute a validação após todos os esclarecimentos serem resolvidos
 
-   d. **Atualizar Checklist**: Após cada iteração de validação, atualize o arquivo de checklist com o status atual de pass/fail
+   d. **Atualizar Checklist**: Após cada iteração de validação, atualize o arquivo de checklist com o status atual de aprovado/reprovado
 
 ## Hooks Obrigatórios Pós-Execução
 
@@ -248,22 +248,22 @@ Verifique se `.specify/extensions.yml` existe na raiz do projeto.
 - Para cada hook executável, produza o seguinte com base na flag `optional`:
   - **Hook obrigatório** (`optional: false`) — **Você DEVE emitir `EXECUTE_COMMAND:` para cada hook obrigatório**:
     ```
-    ## Extension Hooks
+    ## Hooks de Extensão
 
-    **Automatic Hook**: {extension}
-    Executing: `/{command}`
+    **Hook Automático**: {extension}
+    Executando: `/{command}`
     EXECUTE_COMMAND: {command}
     ```
     Após emitir o bloco acima, você DEVE realmente invocar o hook e aguardar sua conclusão antes de continuar. Execute-o da mesma forma que executaria o comando neste agente/sessão (a invocação pode diferir do id literal `{command}` mostrado acima, por exemplo, um agente em modo skills o executa como `/skill:speckit-...` ou `$speckit-...`). Emitir o bloco sozinho não executa o hook.
   - **Hook opcional** (`optional: true`):
     ```
-    ## Extension Hooks
+    ## Hooks de Extensão
 
-    **Optional Hook**: {extension}
-    Command: `/{command}`
-    Description: {description}
+    **Hook Opcional**: {extension}
+    Comando: `/{command}`
+    Descrição: {description}
 
-    Prompt: {prompt}
+    Instrução: {prompt}
     Para executar: `/{command}`
     ```
 
@@ -296,12 +296,12 @@ Ao criar esta spec a partir de um prompt do usuário:
 
 1. **Faça suposições informadas**: Use contexto, padrões da indústria e padrões comuns para preencher lacunas
 2. **Documente premissas**: Registre defaults razoáveis na seção Premissas
-3. **Limite esclarecimentos**: Máximo de 3 marcadores [NEEDS CLARIFICATION] — use apenas para decisões críticas que:
+3. **Limite esclarecimentos**: Máximo de 3 marcadores [PRECISA DE ESCLARECIMENTO] — use apenas para decisões críticas que:
    - Impactam significativamente o escopo da feature ou experiência do usuário
    - Têm múltiplas interpretações razoáveis com implicações diferentes
    - Não têm nenhum default razoável
 4. **Priorize esclarecimentos**: escopo > segurança/privacidade > experiência do usuário > detalhes técnicos
-5. **Pense como um testador**: Cada requisito vago deve falhar no item de checklist "testable and unambiguous"
+5. **Pense como um testador**: Cada requisito vago deve falhar no item de checklist "testável e inequívoco"
 6. **Áreas comuns que precisam de esclarecimento** (apenas se nenhum default razoável existir):
    - Escopo e limites da feature (incluir/excluir casos de uso específicos)
    - Tipos de usuário e permissões (se múltiplas interpretações conflitantes forem possíveis)
@@ -326,17 +326,17 @@ Critérios de sucesso devem ser:
 
 **Bons exemplos**:
 
-- "Users can complete checkout in under 3 minutes"
-- "System supports 10,000 concurrent users"
-- "95% of searches return results in under 1 second"
-- "Task completion rate improves by 40%"
+- "Usuários conseguem concluir o checkout em menos de 3 minutos"
+- "O sistema suporta 10.000 usuários concorrentes"
+- "95% das buscas retornam resultados em menos de 1 segundo"
+- "Taxa de conclusão de tarefas melhora em 40%"
 
 **Maus exemplos** (focados em implementação):
 
-- "API response time is under 200ms" (muito técnico, use "Users see results instantly")
-- "Database can handle 1000 TPS" (detalhe de implementação, use métrica voltada ao usuário)
-- "React components render efficiently" (específico de framework)
-- "Redis cache hit rate above 80%" (específico de tecnologia)
+- "Tempo de resposta da API abaixo de 200ms" (muito técnico, use "Usuários veem resultados instantaneamente")
+- "Banco de dados consegue lidar com 1000 TPS" (detalhe de implementação, use métrica voltada ao usuário)
+- "Componentes React renderizam eficientemente" (específico de framework)
+- "Taxa de acerto do cache Redis acima de 80%" (específico de tecnologia)
 
 ## Concluído Quando
 

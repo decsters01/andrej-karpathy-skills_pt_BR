@@ -1,7 +1,7 @@
 ---
 name: "speckit-implement"
 description: "Executar o plano de implementação processando e executando todas as tarefas definidas em tasks.md"
-compatibility: "Requires spec-kit project structure with .specify/ directory"
+compatibility: "Requer estrutura de projeto spec-kit com diretório .specify/"
 metadata:
   author: "github-spec-kit"
   source: "templates/commands/implement.md"
@@ -30,21 +30,21 @@ Você **DEVE** considerar a entrada do usuário antes de prosseguir (se não est
 - Para cada hook executável, produza o seguinte com base na flag `optional`:
   - **Hook opcional** (`optional: true`):
     ```
-    ## Extension Hooks
+    ## Hooks de Extensão
 
-    **Pre-Hook Opcional**: {extension}
-    Command: `/{command}`
-    Description: {description}
+    **Pré-Hook Opcional**: {extension}
+    Comando: `/{command}`
+    Descrição: {description}
 
-    Prompt: {prompt}
+    Instrução: {prompt}
     Para executar: `/{command}`
     ```
   - **Hook obrigatório** (`optional: false`):
     ```
-    ## Extension Hooks
+    ## Hooks de Extensão
 
-    **Pre-Hook Automático**: {extension}
-    Executing: `/{command}`
+    **Pré-Hook Automático**: {extension}
+    Executando: `/{command}`
     EXECUTE_COMMAND: {command}
     
     Aguarde o resultado do comando do hook antes de prosseguir para o Roteiro.
@@ -65,23 +65,23 @@ Você **DEVE** considerar a entrada do usuário antes de prosseguir (se não est
    - Crie uma tabela de status:
 
      ```text
-     | Checklist | Total | Completed | Incomplete | Status |
+     | Checklist | Total | Concluídos | Incompletos | Status |
      |-----------|-------|-----------|------------|--------|
-     | ux.md     | 12    | 12        | 0          | ✓ PASS |
-     | test.md   | 8     | 5         | 3          | ✗ FAIL |
-     | security.md | 6   | 6         | 0          | ✓ PASS |
+     | ux.md     | 12    | 12        | 0          | ✓ APROVADO |
+     | test.md   | 8     | 5         | 3          | ✗ REPROVADO |
+     | security.md | 6   | 6         | 0          | ✓ APROVADO |
      ```
 
    - Calcule o status geral:
-     - **PASS**: Todas as checklists têm 0 itens incompletos
-     - **FAIL**: Uma ou mais checklists têm itens incompletos
+     - **APROVADO**: Todas as checklists têm 0 itens incompletos
+     - **REPROVADO**: Uma ou mais checklists têm itens incompletos
 
    - **Se alguma checklist estiver incompleta**:
      - Exiba a tabela com contagens de itens incompletos
-     - **PARE** e pergunte: "Algumas checklists estão incompletas. Deseja prosseguir com a implementação mesmo assim? (yes/no)"
+     - **PARE** e pergunte: "Algumas checklists estão incompletas. Deseja prosseguir com a implementação mesmo assim? (sim/não)"
      - Aguarde resposta do usuário antes de continuar
-     - Se o usuário disser "no" ou "wait" ou "stop", interrompa a execução
-     - Se o usuário disser "yes" ou "proceed" ou "continue", prossiga para a etapa 3
+     - Se o usuário disser "não" ou "aguarde" ou "pare", interrompa a execução
+     - Se o usuário disser "sim" ou "prossiga" ou "continue", prossiga para a etapa 3
 
    - **Se todas as checklists estiverem completas**:
      - Exiba a tabela mostrando que todas as checklists passaram
@@ -141,7 +141,7 @@ Você **DEVE** considerar a entrada do usuário antes de prosseguir (se não est
    - **Kubernetes/k8s**: `*.secret.yaml`, `secrets/`, `.kube/`, `kubeconfig*`, `*.key`, `*.crt`
 
 5. Analise a estrutura de tasks.md e extraia:
-   - **Fases de tarefa**: Setup, Tests, Core, Integration, Polish
+   - **Fases de tarefa**: Setup, Testes, Core, Integração, Polimento
    - **Dependências de tarefa**: Regras de execução sequencial vs paralela
    - **Detalhes de tarefa**: ID, descrição, caminhos de arquivo, marcadores paralelos [P]
    - **Fluxo de execução**: Ordem e requisitos de dependência
@@ -192,22 +192,22 @@ Verifique se `.specify/extensions.yml` existe na raiz do projeto.
 - Para cada hook executável, produza o seguinte com base na flag `optional`:
   - **Hook obrigatório** (`optional: false`) — **Você DEVE emitir `EXECUTE_COMMAND:` para cada hook obrigatório**:
     ```
-    ## Extension Hooks
+    ## Hooks de Extensão
 
     **Hook Automático**: {extension}
-    Executing: `/{command}`
+    Executando: `/{command}`
     EXECUTE_COMMAND: {command}
     ```
     Após emitir o bloco acima, você DEVE realmente invocar o hook e aguardar sua conclusão antes de continuar. Execute-o da mesma forma que executaria o comando neste agente/sessão (a invocação pode diferir do id literal `{command}` mostrado acima, por exemplo, um agente em modo skills o executa como `/skill:speckit-...` ou `$speckit-...`). Emitir o bloco sozinho não executa o hook.
   - **Hook opcional** (`optional: true`):
     ```
-    ## Extension Hooks
+    ## Hooks de Extensão
 
     **Hook Opcional**: {extension}
-    Command: `/{command}`
-    Description: {description}
+    Comando: `/{command}`
+    Descrição: {description}
 
-    Prompt: {prompt}
+    Instrução: {prompt}
     Para executar: `/{command}`
     ```
 

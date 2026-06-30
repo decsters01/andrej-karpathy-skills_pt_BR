@@ -6,7 +6,7 @@
 
 Um único arquivo `CLAUDE.md` para melhorar o comportamento do Claude Code, derivado das [observações de Andrej Karpathy](https://x.com/karpathy/status/2015883857489522876) sobre armadilhas de codificação de LLMs.
 
-Português Brasileiro | [English](./README.en.md) | [简体中文](./README.zh.md)
+> **Este repositório é exclusivamente em português brasileiro (pt-BR).**
 
 ## Os Problemas
 
@@ -98,21 +98,17 @@ Critérios de sucesso fortes permitem que você repita independentemente. Crité
 
 ## Exemplos
 
-Consulte **[EXAMPLES.pt-br.md](EXAMPLES.pt-br.md)** para exemplos detalhados de código demonstrando os quatro princípios. Versão em inglês: [EXAMPLES.md](EXAMPLES.md).
+Consulte **[EXAMPLES.md](EXAMPLES.md)** para exemplos detalhados de código demonstrando os quatro princípios.
 
 ## Instalação
 
-**Opção A: Plugin Claude Code**
+**Opção A: Cursor (recomendado)**
 
-O marketplace upstream (`forrestchang/andrej-karpathy-skills`) distribui a versão em inglês. Para português brasileiro, use a **Opção B** ou copie manualmente os arquivos deste repositório.
+Clone este repositório ou copie [`.cursor/rules/karpathy-guidelines.mdc`](.cursor/rules/karpathy-guidelines.mdc) e [`.cursor/rules/idioma-pt-br.mdc`](.cursor/rules/idioma-pt-br.mdc) para o projeto. Consulte [CURSOR.md](CURSOR.md).
 
-Instalação upstream (inglês):
-```
-/plugin marketplace add forrestchang/andrej-karpathy-skills
-/plugin install andrej-karpathy-skills@karpathy-skills
-```
+Skills do Spec Kit para workflow SDD estão em `.cursor/skills/speckit-*/` — use `/speckit-plan`, `/speckit-implement`, etc.
 
-**Opção B: CLAUDE.md (por projeto, pt-BR)**
+**Opção B: CLAUDE.md (por projeto)**
 
 Novo projeto:
 ```bash
@@ -125,9 +121,9 @@ echo "" >> CLAUDE.md
 curl https://raw.githubusercontent.com/decsters01/andrej-karpathy-skills_pt_BR/main/CLAUDE.md >> CLAUDE.md
 ```
 
-**Opção C: Cursor (recomendado para pt-BR)**
+**Opção C: Habilidade pessoal**
 
-Clone este repositório ou copie [`.cursor/rules/karpathy-guidelines.mdc`](.cursor/rules/karpathy-guidelines.mdc) e [`.cursor/rules/idioma-pt-br.mdc`](.cursor/rules/idioma-pt-br.mdc) para o projeto. Consulte [CURSOR.md](CURSOR.md).
+Copie [`skills/karpathy-guidelines/SKILL.md`](skills/karpathy-guidelines/SKILL.md) para `~/.cursor/skills/` ou instale via plugin Claude Code a partir deste repositório.
 
 ## Usando com Cursor
 

@@ -23,7 +23,7 @@ A regra de idioma em `.cursor/rules/idioma-pt-br.mdc` aplica-se em conjunto com 
 
 ### IV. Instalação a Partir do Fork
 
-Instruções de instalação devem apontar para `decsters01/andrej-karpathy-skills_pt_BR`, não para o upstream `forrestchang/andrej-karpathy-skills`. O `README.md` principal deste fork é pt-BR; `README.en.md` preserva a versão em inglês.
+Instruções de instalação devem apontar para `decsters01/andrej-karpathy-skills_pt_BR`. O `README.md` é a documentação principal em pt-BR. Não há versões alternativas em outros idiomas neste fork.
 
 ### V. Simplicidade e Mudanças Cirúrgicas
 

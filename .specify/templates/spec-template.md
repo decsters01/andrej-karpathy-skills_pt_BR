@@ -1,29 +1,29 @@
 # Especificação da Feature: [FEATURE NAME]
 
-**Feature Branch**: `[###-feature-name]`
+**Ramo da Feature**: `[###-feature-name]`
 
 **Criado**: [DATE]
 
-**Status**: Draft
+**Status**: Rascunho
 
 **Entrada**: Descrição do usuário: "$ARGUMENTS"
 
 ## Cenários de Usuário e Testes *(obrigatório)*
 
 <!--
-  IMPORTANTE: User stories devem ser PRIORIZADAS como jornadas de usuário ordenadas por importância.
-  Cada user story/jornada deve ser TESTÁVEL INDEPENDENTEMENTE — ou seja, se você implementar apenas UMA delas,
-  ainda deve ter um MVP (Minimum Viable Product) viável que entrega valor.
+  IMPORTANTE: Histórias de usuário devem ser PRIORIZADAS como jornadas de usuário ordenadas por importância.
+  Cada história de usuário/jornada deve ser TESTÁVEL INDEPENDENTEMENTE — ou seja, se você implementar apenas UMA delas,
+  ainda deve ter um MVP (Produto Mínimo Viável) viável que entrega valor.
 
-  Atribua prioridades (P1, P2, P3, etc.) a cada story, onde P1 é a mais crítica.
-  Pense em cada story como uma fatia autônoma de funcionalidade que pode ser:
+  Atribua prioridades (P1, P2, P3, etc.) a cada história, onde P1 é a mais crítica.
+  Pense em cada história como uma fatia autônoma de funcionalidade que pode ser:
   - Desenvolvida independentemente
   - Testada independentemente
   - Implantada independentemente
   - Demonstrada aos usuários independentemente
 -->
 
-### User Story 1 - [Brief Title] (Priority: P1)
+### História de Usuário 1 - [Título Breve] (Prioridade: P1)
 
 [Descreva esta jornada de usuário em linguagem simples]
 
@@ -33,12 +33,12 @@
 
 **Cenários de Aceitação**:
 
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
-2. **Given** [initial state], **When** [action], **Then** [expected outcome]
+1. **Dado** [estado inicial], **Quando** [ação], **Então** [resultado esperado]
+2. **Dado** [estado inicial], **Quando** [ação], **Então** [resultado esperado]
 
 ---
 
-### User Story 2 - [Brief Title] (Priority: P2)
+### História de Usuário 2 - [Título Breve] (Prioridade: P2)
 
 [Descreva esta jornada de usuário em linguagem simples]
 
@@ -48,11 +48,11 @@
 
 **Cenários de Aceitação**:
 
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
+1. **Dado** [estado inicial], **Quando** [ação], **Então** [resultado esperado]
 
 ---
 
-### User Story 3 - [Brief Title] (Priority: P3)
+### História de Usuário 3 - [Título Breve] (Prioridade: P3)
 
 [Descreva esta jornada de usuário em linguagem simples]
 
@@ -62,11 +62,11 @@
 
 **Cenários de Aceitação**:
 
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
+1. **Dado** [estado inicial], **Quando** [ação], **Então** [resultado esperado]
 
 ---
 
-[Adicione mais user stories conforme necessário, cada uma com prioridade atribuída]
+[Adicione mais histórias de usuário conforme necessário, cada uma com prioridade atribuída]
 
 ### Casos Extremos
 
@@ -75,8 +75,8 @@
   Preencha com os casos extremos corretos.
 -->
 
-- O que acontece quando [boundary condition]?
-- Como o sistema lida com [error scenario]?
+- O que acontece quando [condição de limite]?
+- Como o sistema lida com [cenário de erro]?
 
 ## Requisitos *(obrigatório)*
 
@@ -87,21 +87,21 @@
 
 ### Requisitos Funcionais
 
-- **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
-- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]
-- **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
-- **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
-- **FR-005**: System MUST [behavior, e.g., "log all security events"]
+- **FR-001**: O sistema DEVE [capacidade específica, ex. "permitir que usuários criem contas"]
+- **FR-002**: O sistema DEVE [capacidade específica, ex. "validar endereços de e-mail"]
+- **FR-003**: Usuários DEVEM poder [interação principal, ex. "redefinir sua senha"]
+- **FR-004**: O sistema DEVE [requisito de dados, ex. "persistir preferências do usuário"]
+- **FR-005**: O sistema DEVE [comportamento, ex. "registrar todos os eventos de segurança"]
 
 *Exemplo de marcação de requisitos pouco claros:*
 
-- **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
-- **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
+- **FR-006**: O sistema DEVE autenticar usuários via [PRECISA DE ESCLARECIMENTO: método de autenticação não especificado - e-mail/senha, SSO, OAuth?]
+- **FR-007**: O sistema DEVE reter dados do usuário por [PRECISA DE ESCLARECIMENTO: período de retenção não especificado]
 
 ### Entidades Principais *(incluir se a feature envolve dados)*
 
-- **[Entity 1]**: [What it represents, key attributes without implementation]
-- **[Entity 2]**: [What it represents, relationships to other entities]
+- **[Entidade 1]**: [O que representa, atributos principais sem implementação]
+- **[Entidade 2]**: [O que representa, relacionamentos com outras entidades]
 
 ## Critérios de Sucesso *(obrigatório)*
 
@@ -112,10 +112,10 @@
 
 ### Resultados Mensuráveis
 
-- **SC-001**: [Measurable metric, e.g., "Users can complete account creation in under 2 minutes"]
-- **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]
-- **SC-003**: [User satisfaction metric, e.g., "90% of users successfully complete primary task on first attempt"]
-- **SC-004**: [Business metric, e.g., "Reduce support tickets related to [X] by 50%"]
+- **SC-001**: [Métrica mensurável, ex. "Usuários podem completar a criação de conta em menos de 2 minutos"]
+- **SC-002**: [Métrica mensurável, ex. "Sistema suporta 1000 usuários simultâneos sem degradação"]
+- **SC-003**: [Métrica de satisfação do usuário, ex. "90% dos usuários completam a tarefa principal com sucesso na primeira tentativa"]
+- **SC-004**: [Métrica de negócio, ex. "Reduzir tickets de suporte relacionados a [X] em 50%"]
 
 ## Premissas
 
@@ -125,7 +125,7 @@
   escolhidos quando a descrição da feature não especificou certos detalhes.
 -->
 
-- [Assumption about target users, e.g., "Users have stable internet connectivity"]
-- [Assumption about scope boundaries, e.g., "Mobile support is out of scope for v1"]
-- [Assumption about data/environment, e.g., "Existing authentication system will be reused"]
-- [Dependency on existing system/service, e.g., "Requires access to the existing user profile API"]
+- [Premissa sobre usuários-alvo, ex. "Usuários têm conectividade estável com a internet"]
+- [Premissa sobre limites de escopo, ex. "Suporte mobile está fora do escopo para v1"]
+- [Premissa sobre dados/ambiente, ex. "Sistema de autenticação existente será reutilizado"]
+- [Dependência de sistema/serviço existente, ex. "Requer acesso à API de perfil de usuário existente"]

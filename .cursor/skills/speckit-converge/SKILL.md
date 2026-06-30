@@ -1,7 +1,7 @@
 ---
 name: "speckit-converge"
 description: "Avaliar o codebase atual contra a spec, plan e tasks da feature, e acrescentar qualquer trabalho restante não construído como novas tarefas em tasks.md para que implement possa completá-lo."
-compatibility: "Requires spec-kit project structure with .specify/ directory"
+compatibility: "Requer estrutura de projeto spec-kit com diretório .specify/"
 metadata:
   author: "github-spec-kit"
   source: "templates/commands/converge.md"
@@ -32,23 +32,23 @@ Você **DEVE** considerar a entrada do usuário antes de prosseguir (se não est
   - **Hook opcional** (`optional: true`):
 
     ```text
-    ## Extension Hooks
+    ## Hooks de Extensão
 
-    **Pre-Hook Opcional**: {extension}
-    Command: `/{command}`
-    Description: {description}
+    **Pré-Hook Opcional**: {extension}
+    Comando: `/{command}`
+    Descrição: {description}
 
-    Prompt: {prompt}
+    Instrução: {prompt}
     Para executar: `/{command}`
     ```
 
   - **Hook obrigatório** (`optional: false`):
 
     ```text
-    ## Extension Hooks
+    ## Hooks de Extensão
 
-    **Pre-Hook Automático**: {extension}
-    Executing: `/{command}`
+    **Pré-Hook Automático**: {extension}
+    Executando: `/{command}`
     EXECUTE_COMMAND: {command}
 
     Aguarde o resultado do comando do hook antes de prosseguir para o Objetivo.
@@ -74,16 +74,16 @@ do código em relação aos artefatos da feature — sem git, sem comparação d
 ## Restrições Operacionais
 
 **SOMENTE ACRÉSCIMO, NUNCA REESCREVER**: A **única** escrita do comando é acrescentar uma nova
-seção `## Phase N: Convergence` a `tasks.md`. Ele NÃO DEVE:
+seção `## Fase N: Convergência` a `tasks.md`. Ele NÃO DEVE:
 
 - modificar `spec.md` ou `plan.md` de qualquer forma;
 - reescrever, renumerar, reordenar ou deletar qualquer tarefa existente (incluindo tarefas de uma fase
-  Convergence anterior);
+  Convergência anterior);
 - modificar, criar ou deletar qualquer código de aplicação — completar as tarefas acrescentadas é o
   trabalho de `/speckit-implement`.
 
 Quando o codebase já satisfaz tudo, o comando DEVE deixar `tasks.md`
-**inalterado byte a byte** (sem cabeçalho Convergence vazio) e reportar um resultado limpo.
+**inalterado byte a byte** (sem cabeçalho Convergência vazio) e reportar um resultado limpo.
 
 **Autoridade da Constitution**: A constitution do projeto (`.specify/memory/constitution.md`) é
 **não negociável**. Código que viola um princípio MUST é a descoberta de maior severidade e
@@ -150,12 +150,12 @@ Crie um modelo interno (não ecoe artefatos brutos):
 Para cada item no inventário de intenção, inspecione o código atual no escopo e produza um
 `Finding` apenas onde houver uma lacuna. Classifique cada descoberta por **tipo de lacuna**:
 
-- **`missing`**: o trabalho exigido está ausente do código inteiramente.
-- **`partial`**: o trabalho existe mas ainda não satisfaz totalmente o requisito /
+- **`ausente`**: o trabalho exigido está ausente do código inteiramente.
+- **`parcial`**: o trabalho existe mas ainda não satisfaz totalmente o requisito /
   critério de aceitação / decisão de plano.
-- **`contradicts`**: o código faz algo que conflita com a intenção declarada ou um
+- **`contradiz`**: o código faz algo que conflita com a intenção declarada ou um
   princípio MUST da constitution.
-- **`unrequested`**: o código contém trabalho não solicitado pela spec, plan ou tasks
+- **`não solicitada`**: o código contém trabalho não solicitado pela spec, plan ou tasks
   (exposto para consciência — converge **não** deleta código, apenas acrescenta uma tarefa para
   revisar/justificar ou removê-lo).
 
@@ -164,38 +164,38 @@ severidade e uma descrição curta legível com a evidência (o arquivo/área ob
 
 **Casos extremos:**
 
-- **Pouco ou nenhum código ainda**: trate todo o escopo especificado como trabalho restante `missing`
+- **Pouco ou nenhum código ainda**: trate todo o escopo especificado como trabalho restante `ausente`
   em vez de falhar.
-- **Nada resta**: produza zero descobertas e siga o ramo converged na Etapa 7.
+- **Nada resta**: produza zero descobertas e siga o ramo convergido na Etapa 7.
 
 ### 5. Atribuir Severidade
 
-- **CRITICAL**: viola um princípio MUST da constitution, ou uma lacuna `missing`/`contradicts`
-  que bloqueia funcionalidade baseline de uma user story P1.
-- **HIGH**: uma lacuna `missing` ou `partial` em um requisito funcional core ou critério de aceitação.
-- **MEDIUM**: uma lacuna `partial` em um requisito secundário, ou uma adição `unrequested` com
+- **CRÍTICO**: viola um princípio MUST da constitution, ou uma lacuna `ausente`/`contradiz`
+  que bloqueia funcionalidade base de uma user story P1.
+- **ALTA**: uma lacuna `ausente` ou `parcial` em um requisito funcional core ou critério de aceitação.
+- **MÉDIA**: uma lacuna `parcial` em um requisito secundário, ou uma adição `não solicitada` com
   justificativa pouco clara.
-- **LOW**: lacunas parciais menores, polimento ou adições `unrequested` de baixo risco.
+- **BAIXA**: lacunas parciais menores, polimento ou adições `não solicitadas` de baixo risco.
 
 ### 6. Apresentar o Resumo de Descobertas na Sessão
 
 Antes de acrescentar qualquer coisa, produza um resumo compacto graduado por severidade (sem escrita em arquivo ainda):
 
-## Convergence Findings
+## Descobertas de Convergência
 
-| ID | Gap Type | Severity | Source | Evidence | Remaining Work |
+| ID | Tipo de Lacuna | Severidade | Origem | Evidência | Trabalho Restante |
 |----|----------|----------|--------|----------|----------------|
-| F1 | missing  | HIGH     | FR-008 | Example: no append-only guard detected in path/to/module.py when writing tasks.md | Add append-only enforcement |
+| F1 | ausente  | ALTA     | FR-008 | Exemplo: nenhuma proteção somente-acréscimo detectada em path/to/module.py ao escrever tasks.md | Adicionar imposição de somente-acréscimo |
 
 **Métricas de resumo:**
 
 - Requisitos / critérios de aceitação verificados
 - Decisões de plano verificadas
-- Princípios da constitution verificados (ou "skipped — template")
-- Descobertas por tipo de lacuna (missing / partial / contradicts / unrequested)
+- Princípios da constitution verificados (ou "ignorado — template")
+- Descobertas por tipo de lacuna (ausente / parcial / contradiz / não solicitada)
 - Descobertas por severidade
 
-### 7. Acrescentar Tarefas de Convergência (ou reportar converged)
+### 7. Acrescentar Tarefas de Convergência (ou reportar convergido)
 
 **Se houver uma ou mais descobertas acionáveis** (resultado `tasks_appended`):
 
@@ -203,31 +203,31 @@ Acrescente ao **final** de `tasks.md`, conforme o contrato de acréscimo:
 
 1. Escaneie todos os IDs de tarefa existentes; seja `M` o máximo. Determine o próximo número de fase `N`
    (maior fase existente + 1).
-2. Escreva um único cabeçalho de seção `## Phase N: Convergence`.
-3. Emita um item de checklist por descoberta acionável, ordenados CRITICAL/HIGH primeiro, atribuindo
+2. Escreva um único cabeçalho de seção `## Fase N: Convergência`.
+3. Emita um item de checklist por descoberta acionável, ordenados CRÍTICO/ALTA primeiro, atribuindo
    IDs com zero-padding `T{M+1:03d}, T{M+2:03d}, …`:
 
    ```markdown
-   - [ ] T042 <imperative description> per <source-ref> (<gap-type>)
+   - [ ] T042 <descrição imperativa> conforme <source-ref> (<gap-type>)
    ```
 
    `<source-ref>` rastreia a tarefa à sua origem: ex. `FR-003`, `SC-002`,
-   `US1/AC2`, `plan: storage decision`, `Constitution II`.
+   `US1/AC2`, `plan: decisão de armazenamento`, `Constitution II`.
 
-   `<gap-type>` é um de `missing`, `partial`, `contradicts`, `unrequested`.
+   `<gap-type>` é um de `ausente`, `parcial`, `contradiz`, `não solicitada`.
 
    Tarefas de violação da constitution DEVEM ser emitidas primeiro e descritas como
-   `CRITICAL`.
-4. Nunca reutilize ou renumerar IDs existentes. Se uma fase Convergence anterior existir, adicione uma nova,
+   `CRÍTICO`.
+4. Nunca reutilize ou renumerar IDs existentes. Se uma fase Convergência anterior existir, adicione uma nova,
    separadamente numerada abaixo dela — não toque na antiga.
 
 **Se não houver descobertas acionáveis** (resultado `converged`):
 
 - **Não** modifique `tasks.md` de forma alguma — sem cabeçalho de fase vazio.
-- Reporte: **"✅ Converged — the implementation satisfies the spec, plan, and tasks."**
+- Reporte: **"✅ Convergido — a implementação satisfaz a spec, o plano e as tarefas."**
 - Inclua as contagens de resumo do que foi verificado.
 
-### 8. Fornecer Próximas Ações (Handoff)
+### 8. Fornecer Próximas Ações (Repasse)
 
 - Em `tasks_appended`: informe quantas tarefas foram acrescentadas sob qual fase, e recomende
   executar `/speckit-implement` para completá-las; observe que uma execução de converge
@@ -251,23 +251,23 @@ Após produzir o resultado, verifique se `.specify/extensions.yml` existe na rai
   - **Hook opcional** (`optional: true`):
 
     ```text
-    ## Extension Hooks
+    ## Hooks de Extensão
 
     **Hook Opcional**: {extension}
-    Command: `/{command}`
-    Description: {description}
+    Comando: `/{command}`
+    Descrição: {description}
 
-    Prompt: {prompt}
+    Instrução: {prompt}
     Para executar: `/{command}`
     ```
 
   - **Hook obrigatório** (`optional: false`):
 
     ```text
-    ## Extension Hooks
+    ## Hooks de Extensão
 
-    **Automatic Hook**: {extension}
-    Executing: `/{command}`
+    **Hook Automático**: {extension}
+    Executando: `/{command}`
     EXECUTE_COMMAND: {command}
     ```
     Após emitir o bloco acima, você DEVE realmente invocar o hook e aguardar sua conclusão antes de continuar. Execute-o da mesma forma que executaria o comando neste agente/sessão (a invocação pode diferir do id literal `{command}` mostrado acima, por exemplo, um agente em modo skills o executa como `/skill:speckit-...` ou `$speckit-...`). Emitir o bloco sozinho não executa o hook.

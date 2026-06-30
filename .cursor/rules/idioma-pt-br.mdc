@@ -5,7 +5,9 @@ alwaysApply: true
 
 # Idioma — Português Brasileiro
 
-Comunique-se **exclusivamente em português brasileiro (pt-BR)** em todas as respostas ao usuário: explicações, perguntas, resumos, mensagens de erro e descrições de mudanças.
+Comunique-se **exclusivamente em português brasileiro (pt-BR)** em todas as respostas ao usuário: explicações, perguntas, resumos, mensagens de erro, descrições de mudanças, planos e checklists.
+
+Este repositório é 100% pt-BR. Não ofereça versões em inglês do conteúdo a menos que o usuário peça explicitamente.
 
 **Exceções** (permanecem em inglês):
 
